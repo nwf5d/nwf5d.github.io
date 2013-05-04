@@ -1,46 +1,164 @@
-<hr />
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="聂文峰" />
+    <title>clojure基础 | 聂文峰</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/feed/" rel="alternate" title="聂文峰" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>clojure基础</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="about" class="" href="/about/">about</a></span>
+        <span><a title="publication" class="" href="/publication/">publication</a></span>
+        <span><a title="guestbook" class="" href="/guestbook/">guestbook</a></span>
+        <span><a title="vitae" class="" href="/vitae/">vitae</a></span>
+        <span><a title="categories" class="" href="/categories/">categories</a></span>
+        <span><a title="tags" class="" href="/tags/">tags</a></span>
+        <span><a title="links" class="" href="/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<p>Clojure基础：</p>
+<ol style="list-style-type: decimal">
+<li>Forms</li>
+<li>Reader macros</li>
+<li>Functions</li>
+<li>Buildings and namespaces</li>
+<li>Flow control</li>
+<li>Metadata</li>
+</ol>
+<h1 id="a">a</h1>
+<h1 id="b">b</h1>
+<h1 id="c">c</h1>
+<ul>
+<li>a</li>
+<li>b</li>
+<li>c</li>
+</ul>
+<p>| Left align | Right align | Center align | |:———–|————:|:————:| | This | This | This | | column | column | column | | will | will | will | | be | be | be | | left | right | center | | aligned | aligned | aligned |</p>
+<p>|Left align|Right align|Center align| |:———|———-:|:———-:| |This|This|This| |column|column|column| |will|will|will| |be|be|be| |left|right|center| |aligned|aligned|aligned|</p>
+Clojue code is composed of Clojure data.
+<table>
+    <tr>
+        <td>
+Form Examples Primary Coverage
+</td>
+    </tr>
+</table>
+<p>|Form Examples|Primary Coverage |:—-|—: |Boolean|true,false |Character ||Keyword |:tag,:doc |List |(1,2,3_),(println “foo”) |Map |{:name “Bill”, :age 42} |Nil |nil |Number |1,4.2 |Set |#{:snap:crackle:pop} |String |“hello” |Symbol |user/foo,java.lang.String |Vector |[1 2 3]</p>
+<h1 id="mapskeywords-and-structs">Maps,Keywords and Structs</h1>
+<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”}) (def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
+<p>(inventors “Lisp”) =&gt; “MacCarthy” (inventors “Foo”) =&gt; nil</p>
+</body>
+</html>
 
-<p>layout: post
-title: clojure基础
-categories:
-- Technology
-tags:
-- clojure
-- lisp
-- language</p>
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://nwf5d.github.com">聂文峰</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2012-06-27">2012-06-27</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
 
-<p>--- Clojure基础：</p>
+<span class="categories">
+  in categories
+  
+  <a href="/categories/#Technology" title="Technology">Technology</a>&nbsp;
+  
+</span>
 
-<h1>Forms</h1>
 
-<h1>Reader macros</h1>
+<span class="tags">
+  tagged with 
+  
+  <a href="/tags/#clojure" title="clojure">clojure</a>&nbsp;
+  
+  <a href="/tags/#lisp" title="lisp">lisp</a>&nbsp;
+  
+  <a href="/tags/#language" title="language">language</a>&nbsp;
+  
+</span>
 
-<h1>Functions</h1>
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'nwf5d'; // required: replace example with your forum shortname
 
-<h1>Buildings and namespaces</h1>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
-<h1>Flow control</h1>
 
-<h1>Metadata</h1>
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = '/2012/06/hello-everybody/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = '/2012/10/clear-zookeeper-log/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
 
-<p>Clojue code is composed of Clojure data.
-Form        Examples            Primary Coverage
-Boolean     true,false
-Character   \a
-Keyword     :tag,:doc
-List        (1,2,3_),(println "foo")
-Map         {:name "Bill", :age 42}
-Nil         nil
-Number      1,4.2
-Set         #{:snap:crackle:pop}
-String      "hello"
-Symbol      user/foo,java.lang.String
-Vector      [1 2 3]</p>
 
-<h1>Maps,Keywords and Structs</h1>
 
-<p>(def inventors {"Lisp" "McCarthy" "Clojure" "Hickey"})
-(def inventors {"Lisp" "McCarthy", "Clojure" "Hickey"})</p>
-
-<p>(inventors "Lisp")  =>  "MacCarthy"
-(inventors "Foo") => nil</p>
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1988641-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

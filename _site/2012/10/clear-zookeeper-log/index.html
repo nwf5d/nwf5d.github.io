@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="聂文峰" />
-    <title>留言 | 聂文峰</title>
+    <title>定时清除Zookeeper日志【转】 | 聂文峰</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/feed/" rel="alternate" title="聂文峰" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/css/style.css">
@@ -14,7 +14,7 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>留言</h1>
+        <h1>定时清除Zookeeper日志【转】</h1>
         </header>
         <nav>
         <span><a title="home page" class="" href="/">home</a></span>
@@ -38,12 +38,45 @@
   <title></title>
 </head>
 <body>
-<p>希望多交流，多结识各行各业的朋友！</p>
+<h1 id="命令格式">命令格式：</h1>
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count></p>
+<p>举例：</p>
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10</p>
+<p>定时清除zookeeper日志和快照数据非常简单，只需简单3步。</p>
+<p>Step1：在zookeeper/bin目录建立purgeTxnLog.sh文件，内容如下所示：</p>
 </body>
 </html>
 
 </section>
+<section class="meta">
+<span class="author">
+  <a href="http://nwf5d.github.com">聂文峰</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2012-10-10">2012-10-10</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
 
+<span class="categories">
+  in categories
+  
+  <a href="/categories/#Technology" title="Technology">Technology</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+  <a href="/tags/#zookeeper" title="zookeeper">zookeeper</a>&nbsp;
+  
+</span>
+
+</section>
 <section class="comment">
 <div id="disqus_thread"></div>
 <script type="text/javascript">
@@ -62,6 +95,26 @@
 </section>
 
 
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = '/2012/06/exploring-clojure/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = '/2012/11/create-blog-with-git/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
 
 
 

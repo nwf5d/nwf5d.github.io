@@ -1,5 +1,4 @@
-#markdown: rdiscount
-markdown: pandoc
+markdown: rdiscount
 pandoc:
     extensions: [smart, mathjax, standalone]
 permalink: /:year/:month/:title/

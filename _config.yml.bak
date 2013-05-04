@@ -1,7 +1,7 @@
-#markdown: rdiscount
-markdown: pandoc
-pandoc:
-    extensions: [smart, mathjax, standalone]
+markdown: rdiscount
+#markdown: pandoc
+#pandoc:
+#    extensions: [mathjax, standalone]
 permalink: /:year/:month/:title/
 #url: http://yihui.name/cn
 author: 聂文峰
