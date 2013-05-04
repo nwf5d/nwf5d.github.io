@@ -29,17 +29,9 @@
         </nav>
         <article class="content">
         <section class="post">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
 <p>Clojure基础：</p>
-<ol style="list-style-type: decimal">
+
+<ol>
 <li>Forms</li>
 <li>Reader macros</li>
 <li>Functions</li>
@@ -47,30 +39,205 @@
 <li>Flow control</li>
 <li>Metadata</li>
 </ol>
-<h1 id="a">a</h1>
-<h1 id="b">b</h1>
-<h1 id="c">c</h1>
+
+
+<h1>a</h1>
+
+<h1>b</h1>
+
+<h1>c</h1>
+
 <ul>
 <li>a</li>
 <li>b</li>
 <li>c</li>
 </ul>
-<p>| Left align | Right align | Center align | |:———–|————:|:————:| | This | This | This | | column | column | column | | will | will | will | | be | be | be | | left | right | center | | aligned | aligned | aligned |</p>
-<p>|Left align|Right align|Center align| |:———|———-:|:———-:| |This|This|This| |column|column|column| |will|will|will| |be|be|be| |left|right|center| |aligned|aligned|aligned|</p>
-Clojue code is composed of Clojure data.
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"> Left align </th>
+<th align="right"> Right align </th>
+<th align="center"> Center align </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left"> This       </td>
+<td align="right">        This </td>
+<td align="center">     This     |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> column     </td>
+<td align="right">      column </td>
+<td align="center">    column    |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> will       </td>
+<td align="right">        will </td>
+<td align="center">     will     |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> be         </td>
+<td align="right">          be </td>
+<td align="center">      be      |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> left       </td>
+<td align="right">       right </td>
+<td align="center">    center    |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> aligned    </td>
+<td align="right">     aligned </td>
+<td align="center">   aligned    |</td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">Left align</th>
+<th align="right">Right align</th>
+<th align="center">Center align</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">This</td>
+<td align="right">This</td>
+<td align="center">This|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">column</td>
+<td align="right">column</td>
+<td align="center">column|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">will</td>
+<td align="right">will</td>
+<td align="center">will|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">be</td>
+<td align="right">be</td>
+<td align="center">be|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">left</td>
+<td align="right">right</td>
+<td align="center">center|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">aligned</td>
+<td align="right">aligned</td>
+<td align="center">aligned|</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Clojue code is composed of Clojure data.</p>
+
 <table>
     <tr>
-        <td>
-Form Examples Primary Coverage
-</td>
+        <td>Form        Examples            Primary Coverage </td>
     </tr>
 </table>
-<p>|Form Examples|Primary Coverage |:—-|—: |Boolean|true,false |Character ||Keyword |:tag,:doc |List |(1,2,3_),(println “foo”) |Map |{:name “Bill”, :age 42} |Nil |nil |Number |1,4.2 |Set |#{:snap:crackle:pop} |String |“hello” |Symbol |user/foo,java.lang.String |Vector |[1 2 3]</p>
-<h1 id="mapskeywords-and-structs">Maps,Keywords and Structs</h1>
-<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”}) (def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
-<p>(inventors “Lisp”) =&gt; “MacCarthy” (inventors “Foo”) =&gt; nil</p>
-</body>
-</html>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">Form Examples</th>
+<th align="right">Primary Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">Boolean</td>
+<td align="right">true,false</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Character </td>
+<td align="right">\a </td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Keyword </td>
+<td align="right">:tag,:doc</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">List </td>
+<td align="right">(1,2,3_),(println "foo")</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Map </td>
+<td align="right">{:name "Bill", :age 42}</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Nil </td>
+<td align="right">nil</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Number </td>
+<td align="right">1,4.2</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Set </td>
+<td align="right">#{:snap:crackle:pop}</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">String </td>
+<td align="right">"hello"</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Symbol </td>
+<td align="right">user/foo,java.lang.String</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Vector  </td>
+<td align="right">[1 2 3]</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>Maps,Keywords and Structs</h1>
+
+<p>(def inventors {"Lisp" "McCarthy" "Clojure" "Hickey"})
+(def inventors {"Lisp" "McCarthy", "Clojure" "Hickey"})</p>
+
+<p>(inventors "Lisp")  =>  "MacCarthy"
+(inventors "Foo") => nil</p>
 
 </section>
 <section class="meta">

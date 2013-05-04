@@ -7,7 +7,7 @@
     <title>聂文峰</title>
     <link href="/feed/" rel="self" />
     <link href="http://nwf5d.github.com/" />
-    <lastBuildDate>2013-05-05T00:14:52+08:00</lastBuildDate>
+    <lastBuildDate>2013-05-05T00:31:39+08:00</lastBuildDate>
     <webMaster>nwf@github.com</webMaster>
     
     <item>
@@ -16,25 +16,21 @@
       <pubDate>2013-05-04T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2013/05/perceptron</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head>
-<body>
-<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。 感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+      <content:encoded><![CDATA[<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。
+感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+
 <p><em>强调：</em>利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
-<ol>
-<li><em>模型：</em> \(f(x)=sign(w*x+b)\)</li>
-<li><em>学习策略：</em> \(L(w,b)=-yi*(w*xi+b)\)</li>
-<li>学习算法：随机梯度下降</li>
-</ol>
-<p>\(e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = \lim_{n\rightarrow\infty} (1+x/n)^n\)</p>
+
+<h1>. <em>模型：</em> $f(x)=sign(w*x+b)$</h1>
+
+<h1>. <em>学习策略：</em> $L(w,b)=-yi<em>(w</em>xi+b)$</h1>
+
+<h1>. 学习算法：随机梯度下降</h1>
+
+<p>$e<sup>x</sup> = \sum<em>{n=0}<sup>\infty</sup> \frac{x<sup>n}{n!}</sup> = \lim</em>{n\rightarrow\infty} (1+x/n)<sup>n$</sup></p>
+
 <p>Python代码：</p>
+
 <div class="highlight"><pre><code class="python"><span class="c"># -*- coding:gbk -*- </span>
 <span class="c">#针对二维空间的感知机学习算法 </span>
 <span class="c">#感知机模型 f(x) = sign(w*x+b) </span>
@@ -98,11 +94,9 @@
 </div>
 
 
-
 <p>(完)</p>
+
 <hr />
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -112,32 +106,29 @@
       <pubDate>2012-11-27T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/11/do-a-good-job</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>先从两件事情说起。第一件事情是一年前研究三种日志采集的开源实现，chukwa、Scribe和Flume,总的时间有超过两个月，最后以失败告终。当时总结的原因是：</p>
-<ol style="list-style-type: decimal">
+      <content:encoded><![CDATA[<p>先从两件事情说起。第一件事情是一年前研究三种日志采集的开源实现，chukwa、Scribe和Flume,总的时间有超过两个月，最后以失败告终。当时总结的原因是：</p>
+
+<ol>
 <li>Chukwa是用于收集系统日志，如Hadoop日志，处理起来比较鬼异，不太合适；</li>
 <li>Scribe有点复杂，不够稳定，需要Hadoop支持append功能；</li>
 <li>Flume配置简单，功能强大，依然是需要Hadoop支持append功能；</li>
 </ol>
+
+
 <p>最后归结为Hadoop的问题？如何解决？可以打patch，但是有风险，然后作罢。</p>
-<p>第二件事是今年五月份，研究实时计算框架Storm，最后遇到数据源问题进展缓慢，又以需要支持其他工作为由作罢。前段时间，公司其他组同事就是用我曾研究过的东西–Flume、Kafka他Storm，搭建了个实时计算的框架，然后心中五味杂陈，深刻反思后得到如下结论：</p>
-<ol style="list-style-type: decimal">
+
+<p>第二件事是今年五月份，研究实时计算框架Storm，最后遇到数据源问题进展缓慢，又以需要支持其他工作为由作罢。前段时间，公司其他组同事就是用我曾研究过的东西--Flume、Kafka他Storm，搭建了个实时计算的框架，然后心中五味杂陈，深刻反思后得到如下结论：</p>
+
+<ol>
 <li>做事情一定要有始有终，有选择有计划</li>
 <li>一项技术如果有价值，那花多大力气也要研究透，遇到困难不退缩，持续进步</li>
 <li>做事情要有计划，清晰的事情描述、可度量的目标和最终的完成时间</li>
 </ol>
+
+
 <p>不管从事什么事情，都是一样。时间就是金钱，做事要有效率，时间要有价值！</p>
+
 <hr />
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -147,20 +138,17 @@
       <pubDate>2012-11-16T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/11/create-blog-with-git</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>github.com的jekyll是个简单的用于生成静态站点的工具。</p>
-<p>所有的文章会生成静态的html文件，关键是这东西可以放在github上，可以绑定自己的域名, 有稳定的服务器给你。支持rss,评论，代码高亮。符合程序员的口味。</p>
+      <content:encoded><![CDATA[<p>github.com的jekyll是个简单的用于生成静态站点的工具。</p>
+
+<p>所有的文章会生成静态的html文件，关键是这东西可以放在github上，可以绑定自己的域名,
+有稳定的服务器给你。支持rss,评论，代码高亮。符合程序员的口味。</p>
+
 <hr />
-<h1 id="搭建过程">搭建过程</h1>
-<h1 id="links">links</h1>
+
+<h1>搭建过程</h1>
+
+<h1>links</h1>
+
 <ul>
 <li>官方的pages教程 <a href="pages.github.com">pages</a></li>
 <li>jekyll项目主页<a href="https://github.com/mojombo/jekyll">jekyll</a></li>
@@ -173,8 +161,7 @@
 <li>YAML Front Matter</li>
 <li><a href="./2012-10-10-clear-zookeeper-log">test</a></li>
 </ul>
-</body>
-</html>
+
 ]]></content:encoded>
     </item>
     
@@ -184,23 +171,17 @@
       <pubDate>2012-10-10T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/10/clear-zookeeper-log</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<h1 id="命令格式">命令格式：</h1>
+      <content:encoded><![CDATA[<h1>命令格式：</h1>
+
 <p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count></p>
+
 <p>举例：</p>
+
 <p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10</p>
+
 <p>定时清除zookeeper日志和快照数据非常简单，只需简单3步。</p>
+
 <p>Step1：在zookeeper/bin目录建立purgeTxnLog.sh文件，内容如下所示：</p>
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -210,17 +191,9 @@
       <pubDate>2012-06-27T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/06/exploring-clojure</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>Clojure基础：</p>
-<ol style="list-style-type: decimal">
+      <content:encoded><![CDATA[<p>Clojure基础：</p>
+
+<ol>
 <li>Forms</li>
 <li>Reader macros</li>
 <li>Functions</li>
@@ -228,30 +201,205 @@
 <li>Flow control</li>
 <li>Metadata</li>
 </ol>
-<h1 id="a">a</h1>
-<h1 id="b">b</h1>
-<h1 id="c">c</h1>
+
+
+<h1>a</h1>
+
+<h1>b</h1>
+
+<h1>c</h1>
+
 <ul>
 <li>a</li>
 <li>b</li>
 <li>c</li>
 </ul>
-<p>| Left align | Right align | Center align | |:———–|————:|:————:| | This | This | This | | column | column | column | | will | will | will | | be | be | be | | left | right | center | | aligned | aligned | aligned |</p>
-<p>|Left align|Right align|Center align| |:———|———-:|:———-:| |This|This|This| |column|column|column| |will|will|will| |be|be|be| |left|right|center| |aligned|aligned|aligned|</p>
-Clojue code is composed of Clojure data.
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"> Left align </th>
+<th align="right"> Right align </th>
+<th align="center"> Center align </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left"> This       </td>
+<td align="right">        This </td>
+<td align="center">     This     |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> column     </td>
+<td align="right">      column </td>
+<td align="center">    column    |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> will       </td>
+<td align="right">        will </td>
+<td align="center">     will     |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> be         </td>
+<td align="right">          be </td>
+<td align="center">      be      |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> left       </td>
+<td align="right">       right </td>
+<td align="center">    center    |</td>
+</tr>
+<tr>
+<td></td>
+<td align="left"> aligned    </td>
+<td align="right">     aligned </td>
+<td align="center">   aligned    |</td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">Left align</th>
+<th align="right">Right align</th>
+<th align="center">Center align</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">This</td>
+<td align="right">This</td>
+<td align="center">This|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">column</td>
+<td align="right">column</td>
+<td align="center">column|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">will</td>
+<td align="right">will</td>
+<td align="center">will|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">be</td>
+<td align="right">be</td>
+<td align="center">be|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">left</td>
+<td align="right">right</td>
+<td align="center">center|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">aligned</td>
+<td align="right">aligned</td>
+<td align="center">aligned|</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Clojue code is composed of Clojure data.</p>
+
 <table>
     <tr>
-        <td>
-Form Examples Primary Coverage
-</td>
+        <td>Form        Examples            Primary Coverage </td>
     </tr>
 </table>
-<p>|Form Examples|Primary Coverage |:—-|—: |Boolean|true,false |Character ||Keyword |:tag,:doc |List |(1,2,3_),(println “foo”) |Map |{:name “Bill”, :age 42} |Nil |nil |Number |1,4.2 |Set |#{:snap:crackle:pop} |String |“hello” |Symbol |user/foo,java.lang.String |Vector |[1 2 3]</p>
-<h1 id="mapskeywords-and-structs">Maps,Keywords and Structs</h1>
-<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”}) (def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
-<p>(inventors “Lisp”) =&gt; “MacCarthy” (inventors “Foo”) =&gt; nil</p>
-</body>
-</html>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">Form Examples</th>
+<th align="right">Primary Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">Boolean</td>
+<td align="right">true,false</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Character </td>
+<td align="right">\a </td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Keyword </td>
+<td align="right">:tag,:doc</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">List </td>
+<td align="right">(1,2,3_),(println "foo")</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Map </td>
+<td align="right">{:name "Bill", :age 42}</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Nil </td>
+<td align="right">nil</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Number </td>
+<td align="right">1,4.2</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Set </td>
+<td align="right">#{:snap:crackle:pop}</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">String </td>
+<td align="right">"hello"</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Symbol </td>
+<td align="right">user/foo,java.lang.String</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Vector  </td>
+<td align="right">[1 2 3]</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>Maps,Keywords and Structs</h1>
+
+<p>(def inventors {"Lisp" "McCarthy" "Clojure" "Hickey"})
+(def inventors {"Lisp" "McCarthy", "Clojure" "Hickey"})</p>
+
+<p>(inventors "Lisp")  =>  "MacCarthy"
+(inventors "Foo") => nil</p>
 ]]></content:encoded>
     </item>
     
@@ -261,18 +409,7 @@ Form Examples Primary Coverage
       <pubDate>2012-06-24T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/06/hello-everybody</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>其实，一直有想买个域名和服务自己建个博客，收集整理涉及到的知识和经验。几个星期前在<a href="http://coolshell.cn">酷壳</a>上看到一个很长资源列表，有个dokuwiki的，Google和百度都说不错，(估计那帮人都不知道有jekyll+github这回事)。折腾一段时间后，居然找到<a href="http://yihui.name">谢益辉</a>的博客，还有篇介绍Jekyll的，以及从wordpress搬到Github的经历，突然眼前一亮，终于找到组织了。大牛就是大牛，模板啥的也选的很眼光，于是我忍不住无耻地搬了过来。总算安家了，以后坚持写博客了，坚定不移地向大牛迈进！</p>
-</body>
-</html>
+      <content:encoded><![CDATA[<p>其实，一直有想买个域名和服务自己建个博客，收集整理涉及到的知识和经验。几个星期前在<a href="http://coolshell.cn">酷壳</a>上看到一个很长资源列表，有个dokuwiki的，Google和百度都说不错，(估计那帮人都不知道有jekyll+github这回事)。折腾一段时间后，居然找到<a href="http://yihui.name">谢益辉</a>的博客，还有篇介绍Jekyll的，以及从wordpress搬到Github的经历，突然眼前一亮，终于找到组织了。大牛就是大牛，模板啥的也选的很眼光，于是我忍不住无耻地搬了过来。总算安家了，以后坚持写博客了，坚定不移地向大牛迈进！</p>
 ]]></content:encoded>
     </item>
     

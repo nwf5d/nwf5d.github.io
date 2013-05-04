@@ -29,25 +29,21 @@
         </nav>
         <article class="content">
         <section class="post">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head>
-<body>
-<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。 感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。
+感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+
 <p><em>强调：</em>利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
-<ol>
-<li><em>模型：</em> \(f(x)=sign(w*x+b)\)</li>
-<li><em>学习策略：</em> \(L(w,b)=-yi*(w*xi+b)\)</li>
-<li>学习算法：随机梯度下降</li>
-</ol>
-<p>\(e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = \lim_{n\rightarrow\infty} (1+x/n)^n\)</p>
+
+<h1>. <em>模型：</em> $f(x)=sign(w*x+b)$</h1>
+
+<h1>. <em>学习策略：</em> $L(w,b)=-yi<em>(w</em>xi+b)$</h1>
+
+<h1>. 学习算法：随机梯度下降</h1>
+
+<p>$e<sup>x</sup> = \sum<em>{n=0}<sup>\infty</sup> \frac{x<sup>n}{n!}</sup> = \lim</em>{n\rightarrow\infty} (1+x/n)<sup>n$</sup></p>
+
 <p>Python代码：</p>
+
 <div class="highlight"><pre><code class="python"><span class="c"># -*- coding:gbk -*- </span>
 <span class="c">#针对二维空间的感知机学习算法 </span>
 <span class="c">#感知机模型 f(x) = sign(w*x+b) </span>
@@ -111,11 +107,9 @@
 </div>
 
 
-
 <p>(完)</p>
+
 <hr />
-</body>
-</html>
 
 </section>
 <section class="meta">
