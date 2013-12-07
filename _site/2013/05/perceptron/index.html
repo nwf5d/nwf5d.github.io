@@ -29,93 +29,85 @@
         </nav>
         <article class="content">
         <section class="post">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head>
-<body>
-<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。 感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
-<p><em>强调：</em>利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
-<ol>
-<li><em>模型：</em> \(f(x)=sign(w*x+b)\)</li>
-<li><em>学习策略：</em> \(L(w,b)=-yi*(w*xi+b)\)</li>
-<li>学习算法：随机梯度下降</li>
-</ol>
-<p>\(e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = \lim_{n\rightarrow\infty} (1+x/n)^n\)</p>
+<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。
+感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+
+<p>_强调：_利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
+
+<h1 id="fxsignwxb">. <em>分类模型：</em> $f(x)=sign(w*x+b)$</h1>
+<p>#. <em>极小化损失函数，对应于误分类点到分离超平面的总距离：</em>$\min<em>{w,b}L(w,b)=-\sum</em>{{x}<em>{i} \in M}{y}</em>{i}(w*{x}_{i}+b)$
+#. 学习算法：随机梯度下降
+#. 当训练集线性可分时，感知机学习算法是收敛的。其在训练集上的误分类次数k满足不等式：
+$k \preceq ( \frac{R}{\gamma} )^2$</p>
+
 <p>Python代码：</p>
-<div class="highlight"><pre><code class="python"><span class="c"># -*- coding:gbk -*- </span>
-<span class="c">#针对二维空间的感知机学习算法 </span>
-<span class="c">#感知机模型 f(x) = sign(w*x+b) </span>
-<span class="c">#学习策略 损失函数: L(w,b) = -y(w*x+b) </span>
-<span class="c">#学习算法 随即梯度下降 </span>
-<span class="c"># @author Richard</span>
-<span class="c"># @date 2013-05-04</span>
-<span class="c">#定义感知机类 </span>
-<span class="k">class</span> <span class="nc">Perceptron</span>
-    <span class="c">#初始化类 </span>
-    <span class="c">#m_learnrate:学习率  m_w0:x0的权值  m_w1:x1的权值 m_b:常向量 </span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">m_learnrate</span><span class="p">,</span><span class="n">m_w0</span><span class="p">,</span><span class="n">m_w1</span><span class="p">,</span><span class="n">m_b</span><span class="p">):</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span> <span class="o">=</span> <span class="n">m_learnrate</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span> <span class="o">=</span> <span class="n">m_w0</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span> <span class="o">=</span> <span class="n">m_w1</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_b</span> <span class="o">=</span> <span class="n">m_b</span> 
 
-    <span class="c">#判断针对训练数据x，估测的模型与实际数据是否有误差 </span>
-    <span class="c">#即判断损失函数L(w,b)是否为0 </span>
-    <span class="k">def</span> <span class="nf">judgeHasError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span> 
-        <span class="c">#如果表达式小于0，说明没有被正确分类 </span>
-        <span class="c">#即y*(w0*x0+w1*x1+b)&lt;0 </span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">m_b</span><span class="p">)</span> 
-        <span class="k">if</span> <span class="n">result</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span> 
-            <span class="k">return</span> <span class="bp">False</span> 
-        <span class="k">else</span><span class="p">:</span> 
-            <span class="k">return</span> <span class="bp">True</span> 
+<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.python .numberLines}
+# -<em>- coding:gbk -</em>- 
+#针对二维空间的感知机学习算法 
+#感知机模型 f(x) = sign(w<em>x+b) 
+#学习策略 损失函数: L(w,b) = -y(w</em>x+b) 
+#学习算法 随即梯度下降 
+# @author Richard
+# @date 2013-05-04
+#定义感知机类 
+class Perceptron
+    #初始化类 
+    #m_learnrate:学习率  m_w0:x0的权值  m_w1:x1的权值 m_b:常向量 
+    def <strong>init</strong>(self,m_learnrate,m_w0,m_w1,m_b): 
+        self.m_learnrate = m_learnrate 
+        self.m_w0 = m_w0 
+        self.m_w1 = m_w1 
+        self.m_b = m_b </p>
 
-    <span class="c">#有误差的话，调整模型参数 </span>
-    <span class="k">def</span> <span class="nf">adjustParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span> 
-        <span class="c">#根据梯度下降法调整参数 </span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_b</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> 
-        <span class="k">return</span> 
+<pre><code>#判断针对训练数据x，估测的模型与实际数据是否有误差 
+#即判断损失函数L(w,b)是否为0 
+def judgeHasError(self,x): 
+    #如果表达式小于0，说明没有被正确分类 
+    #即y*(w0*x0+w1*x1+b)&lt;0 
+    result = x[2]*(x[0]*self.m_w0+x[1]*self.m_w1+self.m_b) 
+    if result&lt;=0: 
+        return False 
+    else: 
+        return True 
 
-    <span class="c">#训练数据集 </span>
-    <span class="k">def</span> <span class="nf">trainData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">num</span><span class="p">):</span> 
-        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span> 
-        <span class="n">isOver</span> <span class="o">=</span> <span class="bp">False</span> 
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">isOver</span><span class="p">:</span> 
-            <span class="k">print</span> <span class="s">&quot;w0  w1  b :&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_b</span><span class="p">)</span> 
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num</span><span class="p">):</span> 
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">judgeHasError</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span> 
-                    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span> 
-                    <span class="k">print</span> <span class="s">&quot;调整次数：&quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> 
-                    <span class="bp">self</span><span class="o">.</span><span class="n">adjustParam</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
-                    <span class="n">isOver</span> <span class="o">=</span> <span class="bp">False</span> 
-                    <span class="k">break</span> 
-                <span class="k">else</span><span class="p">:</span> 
-                    <span class="n">isOver</span> <span class="o">=</span> <span class="bp">True</span> 
-        <span class="c">#打印最后的参数 </span>
-        <span class="k">print</span> <span class="s">&quot;w0  w1  b :&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_b</span><span class="p">)</span> 
+#有误差的话，调整模型参数 
+def adjustParam(self,x): 
+    #根据梯度下降法调整参数 
+    self.m_w0 = self.m_w0 + self.m_learnrate*x[2]*x[0] 
+    self.m_w1 = self.m_w1 + self.m_learnrate*x[2]*x[1] 
+    self.m_b = self.m_b + self.m_learnrate*x[2] 
+    return 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span> 
-    <span class="n">p</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> 
-    <span class="c">#data = [[3,3,1],[4,3,1],[1,1,-1]] </span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> 
-    <span class="n">p</span><span class="o">.</span><span class="n">trainData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
+#训练数据集 
+def trainData(self,data,num): 
+    count = 0 
+    isOver = False 
+    while not isOver: 
+        print "w0  w1  b :" +str(self.m_w0)+" "+str(self.m_w1)+" "+str(self.m_b) 
+        for i in range(0,num): 
+            if not self.judgeHasError(data[i]): 
+                count = count+1 
+                print "调整次数："+ str(count) 
+                self.adjustParam(data[i]) 
+                isOver = False 
+                break 
+            else: 
+                isOver = True 
+    #打印最后的参数 
+    print "w0  w1  b :" +str(self.m_w0)+" "+str(self.m_w1)+" "+str(self.m_b) 
 </code></pre>
-</div>
 
-
+<p>if <strong>name</strong> == ‘<strong>main</strong>’: 
+    p = Perceptron(1,0,0,0) 
+    #data = [[3,3,1],[4,3,1],[1,1,-1]] 
+    data = [[3,3,1],[4,3,1],[1,1,-1],[2,2,-1],[5,4,1],[1,3,-1]] 
+    p.trainData(data,6) 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 
 <p>(完)</p>
+
 <hr />
-</body>
-</html>
 
 </section>
 <section class="meta">
@@ -180,6 +172,8 @@ $(function(){
         }
         else if (e.which == 39 || e.which == 75) {  // Right arrow and K
             
+        url = '/2013/05/knn/';
+        
         }
         if (url) {
             window.location = url;

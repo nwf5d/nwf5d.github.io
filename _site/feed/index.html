@@ -7,8 +7,159 @@
     <title>聂文峰</title>
     <link href="/feed/" rel="self" />
     <link href="http://nwf5d.github.com/" />
-    <lastBuildDate>2013-05-05T06:23:42+08:00</lastBuildDate>
+    <lastBuildDate>2013-11-25T22:22:34+08:00</lastBuildDate>
     <webMaster>nwf@github.com</webMaster>
+    
+    <item>
+      <title>个人简历</title>
+      <link href="/2013/10/resume/"/>
+      <pubDate>2013-10-25T00:00:00+08:00</pubDate>
+      <author>聂文峰</author>
+      <guid>/2013/10/resume</guid>
+      <content:encoded><![CDATA[<h1 id="section">项目经验：</h1>
+
+<p>代价函数（cost function）： \begin{equation} J(\theta) = \frac{1}{2m}\sum<em>{i=1}^{m}{\left(h</em>{\theta}\left(x^{(i)}\right) - y^{(i)}\right)^2} \label{eq:cost_function_linear_regression} \end{equation}</p>
+
+<h4 id="section-1">推荐系统点击率预测模型</h4>
+
+<ul>
+  <li>时间：2013年7月至2013年8月</li>
+  <li>描述：</li>
+  <li>职责：</li>
+</ul>
+
+<h4 id="section-2">标签数据在推荐系统中的应用</h4>
+
+<ul>
+  <li>时间：2013年5月至2013年6月</li>
+  <li>描述：</li>
+  <li>职责：</li>
+</ul>
+
+<h4 id="bi">通用BI框架</h4>
+
+<ul>
+  <li>时间：2013年3月至2013年4月</li>
+  <li>描述：通过反射和IOC技术，编写通用BI框架。从而只需要通过前端选择原始日志和各数据字段需要的操作得完成ETL，并可通过前端选择相关统计按钮得到各类统计结果。</li>
+  <li>职责:与另一同事合作，完成后台的预研、开发和测试等工作，前端则由另一同事完成。</li>
+</ul>
+
+<h4 id="biee">BIEE数据仓库设计与开发</h4>
+
+<ul>
+  <li>时间：2012年11月至2013年3月</li>
+  <li>描述：</li>
+  <li>职责：</li>
+</ul>
+
+<h4 id="section-3">数据分析与管理平台</h4>
+
+<ul>
+  <li>时间：2012年4月至2012年10月</li>
+  <li>描述：主要使用PHP+Python+MySQL实现一个统一管理风行所有上报数据、ETL数据以及调度任务的系统。目标是想通过该系统，方便管理业务数据、调度作业，并能开放整个Hadoop计算资源和数据给其他部门，降低各部门使用数据的门槛。</li>
+  <li>职责：负责前期需求的编写，参与需求讨论，并参与了负责数据下载模块的开发工作。</li>
+</ul>
+
+<h4 id="pentaho-bi">Pentaho BI系统搭建</h4>
+<ul>
+  <li>时间：2011年7月至2012年3月</li>
+  <li>描述：使用Kettle对原始数据进行ETL，使用Infobright+Pentaho BI搭建数据仓库，通过使用Pentaho Schema Workbench进行建模，统计得到需要的跟踪的指标数据。并研究使用Pentaho Dashboard创建仪表盘，增强界面展现。</li>
+  <li>职责：与另一同事合作预研Kettle、Schema Workbench、Pentaho BI等整个流程的开发部署及优化工作。并独立完成预研、开发、部署和培训Dashboard工作。 </li>
+</ul>
+
+<p>(完)</p>
+
+<hr />
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>机器学习之－－K近邻法</title>
+      <link href="/2013/05/knn/"/>
+      <pubDate>2013-05-08T00:00:00+08:00</pubDate>
+      <author>聂文峰</author>
+      <guid>/2013/05/knn</guid>
+      <content:encoded><![CDATA[<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。
+感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+
+<p>_强调：_利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
+
+<h1 id="fxsignwxb">. <em>分类模型：</em> $f(x)=sign(w*x+b)$</h1>
+<p>#. <em>极小化损失函数，对应于误分类点到分离超平面的总距离：</em>$\min<em>{w,b}L(w,b)=-\sum</em>{{x}<em>{i} \in M}{y}</em>{i}(w*{x}_{i}+b)$
+#. 学习算法：随机梯度下降
+#. 当训练集线性可分时，感知机学习算法是收敛的。其在训练集上的误分类次数k满足不等式：
+$k \preceq ( \frac{R}{\gamma} )^2$</p>
+
+<p>Python代码：</p>
+
+<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.python .numberLines}
+# -<em>- coding:gbk -</em>- 
+#针对二维空间的感知机学习算法 
+#感知机模型 f(x) = sign(w<em>x+b) 
+#学习策略 损失函数: L(w,b) = -y(w</em>x+b) 
+#学习算法 随即梯度下降 
+# @author Richard
+# @date 2013-05-04
+#定义感知机类 
+class Perceptron
+    #初始化类 
+    #m_learnrate:学习率  m_w0:x0的权值  m_w1:x1的权值 m_b:常向量 
+    def <strong>init</strong>(self,m_learnrate,m_w0,m_w1,m_b): 
+        self.m_learnrate = m_learnrate 
+        self.m_w0 = m_w0 
+        self.m_w1 = m_w1 
+        self.m_b = m_b </p>
+
+<pre><code>#判断针对训练数据x，估测的模型与实际数据是否有误差 
+#即判断损失函数L(w,b)是否为0 
+def judgeHasError(self,x): 
+    #如果表达式小于0，说明没有被正确分类 
+    #即y*(w0*x0+w1*x1+b)&lt;0 
+    result = x[2]*(x[0]*self.m_w0+x[1]*self.m_w1+self.m_b) 
+    if result&lt;=0: 
+        return False 
+    else: 
+        return True 
+
+#有误差的话，调整模型参数 
+def adjustParam(self,x): 
+    #根据梯度下降法调整参数 
+    self.m_w0 = self.m_w0 + self.m_learnrate*x[2]*x[0] 
+    self.m_w1 = self.m_w1 + self.m_learnrate*x[2]*x[1] 
+    self.m_b = self.m_b + self.m_learnrate*x[2] 
+    return 
+
+#训练数据集 
+def trainData(self,data,num): 
+    count = 0 
+    isOver = False 
+    while not isOver: 
+        print "w0  w1  b :" +str(self.m_w0)+" "+str(self.m_w1)+" "+str(self.m_b) 
+        for i in range(0,num): 
+            if not self.judgeHasError(data[i]): 
+                count = count+1 
+                print "调整次数："+ str(count) 
+                self.adjustParam(data[i]) 
+                isOver = False 
+                break 
+            else: 
+                isOver = True 
+    #打印最后的参数 
+    print "w0  w1  b :" +str(self.m_w0)+" "+str(self.m_w1)+" "+str(self.m_b) 
+</code></pre>
+
+<p>if <strong>name</strong> == ‘<strong>main</strong>’: 
+    p = Perceptron(1,0,0,0) 
+    #data = [[3,3,1],[4,3,1],[1,1,-1]] 
+    data = [[3,3,1],[4,3,1],[1,1,-1],[2,2,-1],[5,4,1],[1,3,-1]] 
+    p.trainData(data,6) 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+
+<p>(完)</p>
+
+<hr />
+]]></content:encoded>
+    </item>
     
     <item>
       <title>机器学习之－－感知机</title>
@@ -16,93 +167,85 @@
       <pubDate>2013-05-04T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2013/05/perceptron</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head>
-<body>
-<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。 感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
-<p><em>强调：</em>利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
-<ol>
-<li><em>模型：</em> \(f(x)=sign(w*x+b)\)</li>
-<li><em>学习策略：</em> \(L(w,b)=-yi*(w*xi+b)\)</li>
-<li>学习算法：随机梯度下降</li>
-</ol>
-<p>\(e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = \lim_{n\rightarrow\infty} (1+x/n)^n\)</p>
+      <content:encoded><![CDATA[<p>感知机是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别。
+感知机学习的目的是将训练数据进行线性划分的分离超平面，属于是判别模型。感知机学习采用基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，最后得到感知机模型。</p>
+
+<p>_强调：_利用感知机学习策略进行训练的数据集要求必须是线性可分的，否则感知机学习算法不会收敛，迭代结果会发生震荡。</p>
+
+<h1 id="fxsignwxb">. <em>分类模型：</em> $f(x)=sign(w*x+b)$</h1>
+<p>#. <em>极小化损失函数，对应于误分类点到分离超平面的总距离：</em>$\min<em>{w,b}L(w,b)=-\sum</em>{{x}<em>{i} \in M}{y}</em>{i}(w*{x}_{i}+b)$
+#. 学习算法：随机梯度下降
+#. 当训练集线性可分时，感知机学习算法是收敛的。其在训练集上的误分类次数k满足不等式：
+$k \preceq ( \frac{R}{\gamma} )^2$</p>
+
 <p>Python代码：</p>
-<div class="highlight"><pre><code class="python"><span class="c"># -*- coding:gbk -*- </span>
-<span class="c">#针对二维空间的感知机学习算法 </span>
-<span class="c">#感知机模型 f(x) = sign(w*x+b) </span>
-<span class="c">#学习策略 损失函数: L(w,b) = -y(w*x+b) </span>
-<span class="c">#学习算法 随即梯度下降 </span>
-<span class="c"># @author Richard</span>
-<span class="c"># @date 2013-05-04</span>
-<span class="c">#定义感知机类 </span>
-<span class="k">class</span> <span class="nc">Perceptron</span>
-    <span class="c">#初始化类 </span>
-    <span class="c">#m_learnrate:学习率  m_w0:x0的权值  m_w1:x1的权值 m_b:常向量 </span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">m_learnrate</span><span class="p">,</span><span class="n">m_w0</span><span class="p">,</span><span class="n">m_w1</span><span class="p">,</span><span class="n">m_b</span><span class="p">):</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span> <span class="o">=</span> <span class="n">m_learnrate</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span> <span class="o">=</span> <span class="n">m_w0</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span> <span class="o">=</span> <span class="n">m_w1</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_b</span> <span class="o">=</span> <span class="n">m_b</span> 
 
-    <span class="c">#判断针对训练数据x，估测的模型与实际数据是否有误差 </span>
-    <span class="c">#即判断损失函数L(w,b)是否为0 </span>
-    <span class="k">def</span> <span class="nf">judgeHasError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span> 
-        <span class="c">#如果表达式小于0，说明没有被正确分类 </span>
-        <span class="c">#即y*(w0*x0+w1*x1+b)&lt;0 </span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">m_b</span><span class="p">)</span> 
-        <span class="k">if</span> <span class="n">result</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span> 
-            <span class="k">return</span> <span class="bp">False</span> 
-        <span class="k">else</span><span class="p">:</span> 
-            <span class="k">return</span> <span class="bp">True</span> 
+<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.python .numberLines}
+# -<em>- coding:gbk -</em>- 
+#针对二维空间的感知机学习算法 
+#感知机模型 f(x) = sign(w<em>x+b) 
+#学习策略 损失函数: L(w,b) = -y(w</em>x+b) 
+#学习算法 随即梯度下降 
+# @author Richard
+# @date 2013-05-04
+#定义感知机类 
+class Perceptron
+    #初始化类 
+    #m_learnrate:学习率  m_w0:x0的权值  m_w1:x1的权值 m_b:常向量 
+    def <strong>init</strong>(self,m_learnrate,m_w0,m_w1,m_b): 
+        self.m_learnrate = m_learnrate 
+        self.m_w0 = m_w0 
+        self.m_w1 = m_w1 
+        self.m_b = m_b </p>
 
-    <span class="c">#有误差的话，调整模型参数 </span>
-    <span class="k">def</span> <span class="nf">adjustParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span> 
-        <span class="c">#根据梯度下降法调整参数 </span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">m_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_b</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_learnrate</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> 
-        <span class="k">return</span> 
+<pre><code>#判断针对训练数据x，估测的模型与实际数据是否有误差 
+#即判断损失函数L(w,b)是否为0 
+def judgeHasError(self,x): 
+    #如果表达式小于0，说明没有被正确分类 
+    #即y*(w0*x0+w1*x1+b)&lt;0 
+    result = x[2]*(x[0]*self.m_w0+x[1]*self.m_w1+self.m_b) 
+    if result&lt;=0: 
+        return False 
+    else: 
+        return True 
 
-    <span class="c">#训练数据集 </span>
-    <span class="k">def</span> <span class="nf">trainData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">num</span><span class="p">):</span> 
-        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span> 
-        <span class="n">isOver</span> <span class="o">=</span> <span class="bp">False</span> 
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">isOver</span><span class="p">:</span> 
-            <span class="k">print</span> <span class="s">&quot;w0  w1  b :&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_b</span><span class="p">)</span> 
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num</span><span class="p">):</span> 
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">judgeHasError</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span> 
-                    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span> 
-                    <span class="k">print</span> <span class="s">&quot;调整次数：&quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> 
-                    <span class="bp">self</span><span class="o">.</span><span class="n">adjustParam</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
-                    <span class="n">isOver</span> <span class="o">=</span> <span class="bp">False</span> 
-                    <span class="k">break</span> 
-                <span class="k">else</span><span class="p">:</span> 
-                    <span class="n">isOver</span> <span class="o">=</span> <span class="bp">True</span> 
-        <span class="c">#打印最后的参数 </span>
-        <span class="k">print</span> <span class="s">&quot;w0  w1  b :&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w0</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_w1</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_b</span><span class="p">)</span> 
+#有误差的话，调整模型参数 
+def adjustParam(self,x): 
+    #根据梯度下降法调整参数 
+    self.m_w0 = self.m_w0 + self.m_learnrate*x[2]*x[0] 
+    self.m_w1 = self.m_w1 + self.m_learnrate*x[2]*x[1] 
+    self.m_b = self.m_b + self.m_learnrate*x[2] 
+    return 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span> 
-    <span class="n">p</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> 
-    <span class="c">#data = [[3,3,1],[4,3,1],[1,1,-1]] </span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> 
-    <span class="n">p</span><span class="o">.</span><span class="n">trainData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
+#训练数据集 
+def trainData(self,data,num): 
+    count = 0 
+    isOver = False 
+    while not isOver: 
+        print "w0  w1  b :" +str(self.m_w0)+" "+str(self.m_w1)+" "+str(self.m_b) 
+        for i in range(0,num): 
+            if not self.judgeHasError(data[i]): 
+                count = count+1 
+                print "调整次数："+ str(count) 
+                self.adjustParam(data[i]) 
+                isOver = False 
+                break 
+            else: 
+                isOver = True 
+    #打印最后的参数 
+    print "w0  w1  b :" +str(self.m_w0)+" "+str(self.m_w1)+" "+str(self.m_b) 
 </code></pre>
-</div>
 
-
+<p>if <strong>name</strong> == ‘<strong>main</strong>’: 
+    p = Perceptron(1,0,0,0) 
+    #data = [[3,3,1],[4,3,1],[1,1,-1]] 
+    data = [[3,3,1],[4,3,1],[1,1,-1],[2,2,-1],[5,4,1],[1,3,-1]] 
+    p.trainData(data,6) 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 
 <p>(完)</p>
+
 <hr />
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -112,32 +255,27 @@
       <pubDate>2012-11-27T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/11/do-a-good-job</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>先从两件事情说起。第一件事情是一年前研究三种日志采集的开源实现，chukwa、Scribe和Flume,总的时间有超过两个月，最后以失败告终。当时总结的原因是：</p>
-<ol style="list-style-type: decimal">
-<li>Chukwa是用于收集系统日志，如Hadoop日志，处理起来比较鬼异，不太合适；</li>
-<li>Scribe有点复杂，不够稳定，需要Hadoop支持append功能；</li>
-<li>Flume配置简单，功能强大，依然是需要Hadoop支持append功能；</li>
+      <content:encoded><![CDATA[<p>先从两件事情说起。第一件事情是一年前研究三种日志采集的开源实现，chukwa、Scribe和Flume,总的时间有超过两个月，最后以失败告终。当时总结的原因是：</p>
+
+<ol>
+  <li>Chukwa是用于收集系统日志，如Hadoop日志，处理起来比较鬼异，不太合适；</li>
+  <li>Scribe有点复杂，不够稳定，需要Hadoop支持append功能；</li>
+  <li>Flume配置简单，功能强大，依然是需要Hadoop支持append功能；</li>
 </ol>
+
 <p>最后归结为Hadoop的问题？如何解决？可以打patch，但是有风险，然后作罢。</p>
+
 <p>第二件事是今年五月份，研究实时计算框架Storm，最后遇到数据源问题进展缓慢，又以需要支持其他工作为由作罢。前段时间，公司其他组同事就是用我曾研究过的东西–Flume、Kafka他Storm，搭建了个实时计算的框架，然后心中五味杂陈，深刻反思后得到如下结论：</p>
-<ol style="list-style-type: decimal">
-<li>做事情一定要有始有终，有选择有计划</li>
-<li>一项技术如果有价值，那花多大力气也要研究透，遇到困难不退缩，持续进步</li>
-<li>做事情要有计划，清晰的事情描述、可度量的目标和最终的完成时间</li>
+
+<ol>
+  <li>做事情一定要有始有终，有选择有计划</li>
+  <li>一项技术如果有价值，那花多大力气也要研究透，遇到困难不退缩，持续进步</li>
+  <li>做事情要有计划，清晰的事情描述、可度量的目标和最终的完成时间</li>
 </ol>
+
 <p>不管从事什么事情，都是一样。时间就是金钱，做事要有效率，时间要有价值！</p>
+
 <hr />
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -147,34 +285,28 @@
       <pubDate>2012-11-16T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/11/create-blog-with-git</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>github.com的jekyll是个简单的用于生成静态站点的工具。</p>
-<p>所有的文章会生成静态的html文件，关键是这东西可以放在github上，可以绑定自己的域名, 有稳定的服务器给你。支持rss,评论，代码高亮。符合程序员的口味。</p>
+      <content:encoded><![CDATA[<p>github.com的jekyll是个简单的用于生成静态站点的工具。</p>
+
+<p>所有的文章会生成静态的html文件，关键是这东西可以放在github上，可以绑定自己的域名, 
+有稳定的服务器给你。支持rss,评论，代码高亮。符合程序员的口味。</p>
+
 <hr />
-<h1 id="搭建过程">搭建过程</h1>
+<p># 搭建过程</p>
+
 <h1 id="links">links</h1>
+
 <ul>
-<li>官方的pages教程 <a href="pages.github.com">pages</a></li>
-<li>jekyll项目主页<a href="https://github.com/mojombo/jekyll">jekyll</a></li>
-<li>一些托管在github的站点<a href="https://github.com/mojombo/jekyll/wiki/sites">site</a></li>
-<li>模版语言<a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a></li>
-<li><a href="none">Textile</a>一种标记语言</li>
-<li><a href="none">markdown</a>另一种简单的标记语言</li>
-<li><a href="pygments.org/docs/lexers/">pygment</a></li>
-<li><a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML Front Matter</a></li>
-<li>YAML Front Matter</li>
-<li><a href="./2012-10-10-clear-zookeeper-log">test</a></li>
+  <li>官方的pages教程 <a href="pages.github.com">pages</a></li>
+  <li>jekyll项目主页<a href="https://github.com/mojombo/jekyll">jekyll</a></li>
+  <li>一些托管在github的站点<a href="https://github.com/mojombo/jekyll/wiki/sites">site</a></li>
+  <li>模版语言<a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a> </li>
+  <li><a href="none">Textile</a>一种标记语言</li>
+  <li><a href="none">markdown</a>另一种简单的标记语言 </li>
+  <li><a href="pygments.org/docs/lexers/">pygment</a></li>
+  <li><a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML Front Matter</a></li>
+  <li>YAML Front Matter</li>
+  <li><a href="./2012-10-10-clear-zookeeper-log">test</a></li>
 </ul>
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -184,23 +316,17 @@
       <pubDate>2012-10-10T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/10/clear-zookeeper-log</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<h1 id="命令格式">命令格式：</h1>
-<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count></p>
+      <content:encoded><![CDATA[<h1 id="section">命令格式：</h1>
+
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <datadir> <snapdir> -n <count> </count></snapdir></datadir></p>
+
 <p>举例：</p>
-<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10</p>
+
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10 </p>
+
 <p>定时清除zookeeper日志和快照数据非常简单，只需简单3步。</p>
+
 <p>Step1：在zookeeper/bin目录建立purgeTxnLog.sh文件，内容如下所示：</p>
-</body>
-</html>
 ]]></content:encoded>
     </item>
     
@@ -210,48 +336,138 @@
       <pubDate>2012-06-27T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/06/exploring-clojure</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>Clojure基础：</p>
-<ol style="list-style-type: decimal">
-<li>Forms</li>
-<li>Reader macros</li>
-<li>Functions</li>
-<li>Buildings and namespaces</li>
-<li>Flow control</li>
-<li>Metadata</li>
+      <content:encoded><![CDATA[<p>Clojure基础：</p>
+
+<ol>
+  <li>Forms</li>
+  <li>Reader macros</li>
+  <li>Functions</li>
+  <li>Buildings and namespaces</li>
+  <li>Flow control</li>
+  <li>Metadata</li>
 </ol>
+
 <h1 id="a">a</h1>
-<h1 id="b">b</h1>
-<h1 id="c">c</h1>
+<p># b
+# c</p>
+
 <ul>
-<li>a</li>
-<li>b</li>
-<li>c</li>
+  <li>a</li>
+  <li>b</li>
+  <li>c</li>
 </ul>
-<p>| Left align | Right align | Center align | |:———–|————:|:————:| | This | This | This | | column | column | column | | will | will | will | | be | be | be | | left | right | center | | aligned | aligned | aligned |</p>
-<p>|Left align|Right align|Center align| |:———|———-:|:———-:| |This|This|This| |column|column|column| |will|will|will| |be|be|be| |left|right|center| |aligned|aligned|aligned|</p>
-Clojue code is composed of Clojure data.
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Left align</th>
+      <th style="text-align: right">Right align</th>
+      <th style="text-align: center">Center align</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">This</td>
+      <td style="text-align: right">This</td>
+      <td style="text-align: center">This</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">column</td>
+      <td style="text-align: right">column</td>
+      <td style="text-align: center">column</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">will</td>
+      <td style="text-align: right">will</td>
+      <td style="text-align: center">will</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">be</td>
+      <td style="text-align: right">be</td>
+      <td style="text-align: center">be</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">left</td>
+      <td style="text-align: right">right</td>
+      <td style="text-align: center">center</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aligned</td>
+      <td style="text-align: right">aligned</td>
+      <td style="text-align: center">aligned</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Left align</th>
+      <th style="text-align: right">Right align</th>
+      <th style="text-align: center">Center align</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">This</td>
+      <td style="text-align: right">This</td>
+      <td style="text-align: center">This</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">column</td>
+      <td style="text-align: right">column</td>
+      <td style="text-align: center">column</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">will</td>
+      <td style="text-align: right">will</td>
+      <td style="text-align: center">will</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">be</td>
+      <td style="text-align: right">be</td>
+      <td style="text-align: center">be</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">left</td>
+      <td style="text-align: right">right</td>
+      <td style="text-align: center">center</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aligned</td>
+      <td style="text-align: right">aligned</td>
+      <td style="text-align: center">aligned</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Clojue code is composed of Clojure data. </p>
 <table>
     <tr>
-        <td>
-Form Examples Primary Coverage
-</td>
+        <td>Form		Examples			Primary Coverage </td>
     </tr>
 </table>
-<p>|Form Examples|Primary Coverage |:—-|—: |Boolean|true,false |Character ||Keyword |:tag,:doc |List |(1,2,3_),(println “foo”) |Map |{:name “Bill”, :age 42} |Nil |nil |Number |1,4.2 |Set |#{:snap:crackle:pop} |String |“hello” |Symbol |user/foo,java.lang.String |Vector |[1 2 3]</p>
+<p>|Form Examples|Primary Coverage
+|:—-|—:
+|Boolean|true,false
+|Character |\a 
+|Keyword |:tag,:doc
+|List |(1,2,3_),(println “foo”)
+|Map |{:name “Bill”, :age 42}
+|Nil |nil
+|Number |1,4.2
+|Set |#{:snap:crackle:pop}
+|String |”hello”
+|Symbol |user/foo,java.lang.String
+|Vector  |[1 2 3]</p>
+
 <h1 id="mapskeywords-and-structs">Maps,Keywords and Structs</h1>
-<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”}) (def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
-<p>(inventors “Lisp”) =&gt; “MacCarthy” (inventors “Foo”) =&gt; nil</p>
-</body>
-</html>
+<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”})
+(def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
+
+<p>(inventors “Lisp”)  =&gt;  “MacCarthy”
+(inventors “Foo”) =&gt; nil</p>
+
 ]]></content:encoded>
     </item>
     
@@ -261,18 +477,7 @@ Form Examples Primary Coverage
       <pubDate>2012-06-24T00:00:00+08:00</pubDate>
       <author>聂文峰</author>
       <guid>/2012/06/hello-everybody</guid>
-      <content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<p>其实，一直有想买个域名和服务自己建个博客，收集整理涉及到的知识和经验。几个星期前在<a href="http://coolshell.cn">酷壳</a>上看到一个很长资源列表，有个dokuwiki的，Google和百度都说不错，(估计那帮人都不知道有jekyll+github这回事)。折腾一段时间后，居然找到<a href="http://yihui.name">谢益辉</a>的博客，还有篇介绍Jekyll的，以及从wordpress搬到Github的经历，突然眼前一亮，终于找到组织了。大牛就是大牛，模板啥的也选的很眼光，于是我忍不住无耻地搬了过来。总算安家了，以后坚持写博客了，坚定不移地向大牛迈进！</p>
-</body>
-</html>
+      <content:encoded><![CDATA[<p>其实，一直有想买个域名和服务自己建个博客，收集整理涉及到的知识和经验。几个星期前在<a href="http://coolshell.cn">酷壳</a>上看到一个很长资源列表，有个dokuwiki的，Google和百度都说不错，(估计那帮人都不知道有jekyll+github这回事)。折腾一段时间后，居然找到<a href="http://yihui.name">谢益辉</a>的博客，还有篇介绍Jekyll的，以及从wordpress搬到Github的经历，突然眼前一亮，终于找到组织了。大牛就是大牛，模板啥的也选的很眼光，于是我忍不住无耻地搬了过来。总算安家了，以后坚持写博客了，坚定不移地向大牛迈进！</p>
 ]]></content:encoded>
     </item>
     

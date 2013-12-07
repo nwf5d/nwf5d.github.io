@@ -1,0 +1,53 @@
+<p>Clojure基础：</p>
+
+<ol>
+<li>Forms</li>
+
+<li>Reader macros</li>
+
+<li>Functions</li>
+
+<li>Buildings and namespaces</li>
+
+<li>Flow control</li>
+
+<li>Metadata</li>
+</ol>
+
+<h1 id='a'>a</h1>
+
+<h1 id='b'>b</h1>
+
+<h1 id='c'>c</h1>
+
+<ul>
+<li>a</li>
+
+<li>b</li>
+
+<li>c</li>
+</ul>
+<table><thead><tr><th>Left align</th><th>Right align</th><th>Center align</th></tr></thead><tbody><tr><td style='text-align: left;'>This</td><td style='text-align: right;'>This</td><td style='text-align: center;'>This</td>
+</tr><tr><td style='text-align: left;'>column</td><td style='text-align: right;'>column</td><td style='text-align: center;'>column</td>
+</tr><tr><td style='text-align: left;'>will</td><td style='text-align: right;'>will</td><td style='text-align: center;'>will</td>
+</tr><tr><td style='text-align: left;'>be</td><td style='text-align: right;'>be</td><td style='text-align: center;'>be</td>
+</tr><tr><td style='text-align: left;'>left</td><td style='text-align: right;'>right</td><td style='text-align: center;'>center</td>
+</tr><tr><td style='text-align: left;'>aligned</td><td style='text-align: right;'>aligned</td><td style='text-align: center;'>aligned</td>
+</tr></tbody></table><table><thead><tr><th>Left align</th><th>Right align</th><th>Center align</th></tr></thead><tbody><tr><td style='text-align: left;'>This</td><td style='text-align: right;'>This</td><td style='text-align: center;'>This</td>
+</tr><tr><td style='text-align: left;'>column</td><td style='text-align: right;'>column</td><td style='text-align: center;'>column</td>
+</tr><tr><td style='text-align: left;'>will</td><td style='text-align: right;'>will</td><td style='text-align: center;'>will</td>
+</tr><tr><td style='text-align: left;'>be</td><td style='text-align: right;'>be</td><td style='text-align: center;'>be</td>
+</tr><tr><td style='text-align: left;'>left</td><td style='text-align: right;'>right</td><td style='text-align: center;'>center</td>
+</tr><tr><td style='text-align: left;'>aligned</td><td style='text-align: right;'>aligned</td><td style='text-align: center;'>aligned</td>
+</tr></tbody></table>
+<p>Clojue code is composed of Clojure data. <table>
+    <tr>
+        <td>Form		Examples			Primary Coverage </td>
+    </tr>
+</table> |Form Examples|Primary Coverage |:&#8212;-|&#8212;: |Boolean|true,false |Character |\a |Keyword |:tag,:doc |List |(1,2,3_),(println &#8220;foo&#8221;) |Map | |Nil |nil |Number |1,4.2 |Set |# |String |&#8221;hello&#8221; |Symbol |user/foo,java.lang.String |Vector |<span>1 2 3</span></p>
+
+<h1 id='mapskeywords_and_structs'>Maps,Keywords and Structs</h1>
+
+<p>(def inventors {&#8220;Lisp&#8221; &#8220;McCarthy&#8221; &#8220;Clojure&#8221; &#8220;Hickey&#8221;}) (def inventors {&#8220;Lisp&#8221; &#8220;McCarthy&#8221;, &#8220;Clojure&#8221; &#8220;Hickey&#8221;})</p>
+
+<p>(inventors &#8220;Lisp&#8221;) =&gt; &#8220;MacCarthy&#8221; (inventors &#8220;Foo&#8221;) =&gt; nil</p>

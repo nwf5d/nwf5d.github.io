@@ -29,23 +29,17 @@
         </nav>
         <article class="content">
         <section class="post">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-</head>
-<body>
-<h1 id="命令格式">命令格式：</h1>
-<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count></p>
+<h1 id="section">命令格式：</h1>
+
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <datadir> <snapdir> -n <count> </count></snapdir></datadir></p>
+
 <p>举例：</p>
-<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10</p>
+
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10 </p>
+
 <p>定时清除zookeeper日志和快照数据非常简单，只需简单3步。</p>
+
 <p>Step1：在zookeeper/bin目录建立purgeTxnLog.sh文件，内容如下所示：</p>
-</body>
-</html>
 
 </section>
 <section class="meta">
