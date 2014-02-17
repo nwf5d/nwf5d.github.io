@@ -1,9 +1,0 @@
-#markdown: rdiscount
-#markdown: pandoc
-markdown: kramdown
-pandoc:
-    extensions: [smart, mathjax, standalone]
-permalink: /:year/:month/:title/
-#url: http://yihui.name/cn
-author: 聂文峰
-#pygments: true

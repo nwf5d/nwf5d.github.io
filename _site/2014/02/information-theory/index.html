@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Richard Nieh" />
+    <title>信息论</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="/feed/" rel="alternate" title="Richard Nieh" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/table.css" />
+    <link rel="stylesheet" href="/media/css/style.css" />
+    <link rel="stylesheet" href="/media/css/pygments/emacs.css" />
+    <!--
+    <link rel="stylesheet" href="/media/css/highlight.css" />
+    -->
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/outliner.js"></script>
+
+    <!-- MathJax for LaTeX -->
+        <script type="text/x-mathjax-config"> 
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } }
+        }); 
+        </script>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ['$$$','$$$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+        </script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  </head>
+<!--  <body> 
+-->
+  <script type="text/javascript">
+    function setTimeSpan(){
+    	var date = new Date();
+    	timeSpan.innerText=date.format('yyyy-MM-dd hh:mm:ss');
+    }
+    
+    Date.prototype.format = function(format)
+		{
+    var o =
+    	{
+    	    "M+" : this.getMonth()+1, //month
+    	    "d+" : this.getDate(),    //day
+    	    "h+" : this.getHours(),   //hour
+    	    "m+" : this.getMinutes(), //minute
+    	    "s+" : this.getSeconds(), //second
+    	    "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+    	    "S" : this.getMilliseconds() //millisecond
+    	}
+    	if(/(y+)/.test(format))
+    	format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    	for(var k in o)
+    	if(new RegExp("("+ k +")").test(format))
+    	format = format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+    	return format;
+		}
+  </script>
+  <body onLoad="setInterval(setTimeSpan,1000);">
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>信息论</h1>
+        </header>
+        <nav id="real_nav">
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="about" class="" href="/about/">about</a></span>
+        <span><a title="publication" class="" href="/publication/">publication</a></span>
+        <span><a title="guestbook" class="" href="/guestbook/">guestbook</a></span>
+        <span><a title="vitae" class="" href="/vitae/">vitae</a></span>
+        <span><a title="categories" class="" href="/categories/">categories</a></span>
+        <span><a title="tags" class="" href="/tags/">tags</a></span>
+        <span><a title="links" class="" href="/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="/feed/">subscribe</a></span>
+
+        <!--
+        <span><a title="home" class="" href="/">home</a></span>
+        <span><a title="categories" class="" href="/categories/">categories</a></span>
+        <span><a title="tags" class="" href="/tags/">tags</a></span>
+        <span><a title="logs" class="" href="/logs/">Log</a></span> 
+        <span><a title="about" class="" href="/about/">about</a></span>
+        <span><a title="subscribe by RSS" class="" href="/feed/">Subscribe</a></span>
+        <span><a title="sports" class="" href="/sports/">Sport</a></span>
+        <span><a title="game" class="" href="/game/">Game</a></span>  
+        <span><a title="guestbook" class="" href="/guestbook/">guestbook</a></span>
+        <span><a title="友情链接" class="" href="/links/">链接</a></span>
+        <span><a title="种子订阅" class="" href="/feed/" target="_blank">订阅</a></span> 
+        -->
+        </nav>
+        <article class="content">
+        <section class="meta">
+<span class="time">
+  <time datetime="2014-02-16">2014-02-16</time>
+</span>
+
+ | 
+<span class="categories">
+  categories
+  
+  <a href="/categories/#machine learning" title="machine learning">machine learning</a>&nbsp;
+  
+</span>
+
+
+ | 
+<span class="tags">
+  tags
+  
+  <a href="/tags/#机器学习" title="机器学习">机器学习</a>&nbsp;
+  
+  <a href="/tags/#信息" title="信息">信息</a>&nbsp;
+  
+  <a href="/tags/#信息熵" title="信息熵">信息熵</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="post">
+<p>信息论（Information Theory）是概率论与数理统计的一个分枝。用于信息处理、信息熵、通信系统、数据传输、率失真理论、密码学、信噪比、数据压缩和相关课题。</p>
+
+<h2 id="section">基本概念</h2>
+<p>先说明一点：在信息论里面对数log默认都是指以2为底数。</p>
+
+<ul>
+  <li>
+    <p>自信息量: 
+\begin{equation} 
+I(x_i) = -logp(x_i) 
+\label{eq:self_infomation_content} 
+\end{equation}</p>
+  </li>
+  <li>
+    <p>联合信息量: 
+\begin{equation} 
+I(x_i,y_i) = -logp(x_i,y_i) 
+\label{eq:joint_infomation_content} 
+\end{equation}</p>
+  </li>
+  <li>
+    <p>条件信息量: 
+\begin{equation} 
+I(x_i|y_i) = -logp(x_i|y_i) 
+\label{eq:conditional_infomation_content} 
+\end{equation}</p>
+  </li>
+  <li>
+    <p>信息熵: 
+\begin{equation} 
+H(X) = -\sum p(x_i)logp(x_i)
+\label{eq:infomation_entropy} 
+\end{equation}</p>
+  </li>
+  <li>
+    <p>条件熵: 
+\begin{equation} 
+H(X|Y) = -\sum_i\sum_j p(x_i,y_j)logp(x_i|y_j) = \sum_i \sum_j p(x_i,y_j)I(x_i|y_j)
+\label{eq:conditional_entropy} 
+\end{equation}</p>
+  </li>
+  <li>
+    <p>联合熵: 
+\begin{equation} 
+H(X,Y) = -\sum_i\sum_j p(x_i,y_j)logp(x_i,y_j) = \sum_i \sum_j p(x_i,y_j)I(x_i,y_j)
+\label{eq:joint_entropy} 
+\end{equation}</p>
+  </li>
+</ul>
+
+<p>根据链式规则，有：
+\begin{equation} 
+H(X,Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)
+\label{eq:chained_rule1} 
+\end{equation}
+可以得出：
+\begin{equation} 
+H(X) - H(X|Y) = H(Y) - H(Y|X)
+\label{eq:chained_rule2} 
+\end{equation}</p>
+
+<h2 id="information-gain">信息增益Information Gain</h2>
+<p>系统原先的熵是H(X)，在条件Y已知的情况下系统的熵（条件熵）为H(X|Y)，信息增益就是这两个熵的差值。
+\begin{equation} 
+IG = H(X) - H(X|Y) = H(Y) - H(Y|X)
+\label{eq:information_gain} 
+\end{equation}
+熵表示系统的不确定度，所以信息增益越大表示条件Y对于确定系统的贡献越大。</p>
+
+<h3 id="section-1">信息增益在特征选择中的应用</h3>
+<p>由（9）式可以直接推出词条w的信息增益，（9）式中的X代表类别的集合，Y代表w存在和不存在两种情况:</p>
+
+<p>\begin{equation} 
+IG(w) = H(C) - H(C|w) = -\sum_i p(c_i)logp(c_i) + \sum_ip(c_i,w)log(p(c_i|w)+ \sum_i p(c_i,\overline{w})log p(c_i|\overline{w}) = -\sum_ip(c_i)logp(c_i)+p(w)\sum_ip(c_i|w)logp(c_i|w)+p(\overline{w})\sum_ip(c_i|\overline{w})logp(c_i|\overline{w})
+\label{eq:information_gain_fs} 
+\end{equation}</p>
+
+<p>$p(c_i)$ 是第i类文档出现的概率;
+$p(w)$是在整个训练集中包含w的文档占全部文档的比例;
+$p(c_i|w)$ 表示出现w的文档集合中属于类别i的文档所占的比例;
+$p(c_i|\overline{w})$ 表示没有出现w的文档集合中属于类别i的文档所占的比例。</p>
+
+<h3 id="section-2">信息增益在决策树中的应用</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>outlook</th>
+      <th style="text-align: left">temperature</th>
+      <th style="text-align: left">humidity</th>
+      <th style="text-align: left">windy</th>
+      <th style="text-align: left">play</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sunny</td>
+      <td style="text-align: left">hot</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">no</td>
+    </tr>
+    <tr>
+      <td>sunny</td>
+      <td style="text-align: left">hot</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">TRUE</td>
+      <td style="text-align: left">no</td>
+    </tr>
+    <tr>
+      <td>overcast</td>
+      <td style="text-align: left">hot</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>rainy</td>
+      <td style="text-align: left">mild</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>rainy</td>
+      <td style="text-align: left">cool</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>rainy</td>
+      <td style="text-align: left">cool</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">TRUE</td>
+      <td style="text-align: left">no</td>
+    </tr>
+    <tr>
+      <td>overcast</td>
+      <td style="text-align: left">cool</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">TRUE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>sunny</td>
+      <td style="text-align: left">mild</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">no</td>
+    </tr>
+    <tr>
+      <td>sunny</td>
+      <td style="text-align: left">cool</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>rainy</td>
+      <td style="text-align: left">mild</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>sunny</td>
+      <td style="text-align: left">mild</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">TRUE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>overcast</td>
+      <td style="text-align: left">mild</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">TRUE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>overcast</td>
+      <td style="text-align: left">hot</td>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">FALSE</td>
+      <td style="text-align: left">yes</td>
+    </tr>
+    <tr>
+      <td>rainy</td>
+      <td style="text-align: left">mild</td>
+      <td style="text-align: left">high</td>
+      <td style="text-align: left">TRUE</td>
+      <td style="text-align: left">no</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>（7）式中的X表示打球和不打球两种情况。 </p>
+
+<p>只看最后一列我们得到打球的概率是9/14，不打球的概率是5/14。因此在没有任何先验信息的情况下，系统的熵（不确定性）为
+$H(X)=-\frac{9}{14}log\frac{9}{14}-\frac{5}{14}log\frac{5}{14}=0.94$</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>outlook</th>
+      <th>temperature</th>
+      <th>humidity</th>
+      <th>windy</th>
+      <th>play</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+    <tr>
+      <th> </th>
+      <th>yes</th>
+      <th>no</th>
+      <th> </th>
+      <th>yes</th>
+      <th>no</th>
+      <th> </th>
+      <th>yes</th>
+      <th>no</th>
+      <th> </th>
+      <th>yes</th>
+      <th>no</th>
+      <th>yes</th>
+      <th>no</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sunny</td>
+      <td>2</td>
+      <td>3</td>
+      <td>hot</td>
+      <td>2</td>
+      <td>2</td>
+      <td>high</td>
+      <td>3</td>
+      <td>4</td>
+      <td>FALSE</td>
+      <td>6</td>
+      <td>2</td>
+      <td>9</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>overcast</td>
+      <td>4</td>
+      <td>0</td>
+      <td>mild</td>
+      <td>4</td>
+      <td>2</td>
+      <td>normal</td>
+      <td>6</td>
+      <td>1</td>
+      <td>TRUR</td>
+      <td>3</td>
+      <td>3</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>rainy</td>
+      <td>3</td>
+      <td>2</td>
+      <td>cool</td>
+      <td>3</td>
+      <td>1</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>如果选outlook作为决策树的根节点，（7）式中的Y为集合{sunny、overcast、rainy}，此时的条件熵为
+$H(X|Y)=-\frac{5}{14}(\frac{2}{5}log\frac{2}{5}+\frac{3}{5}log\frac{3}{5})-\frac{4}{14}(\frac{4}{4}log\frac{4}{4}+0log0)-\frac{5}{14}(\frac{3}{5}log\frac{3}{5}+\frac{2}{5}log\frac{2}{5})=0.693$
+$H(X|Y)=-\frac{5}{14}[\frac{5}{14}log\frac{9}{14}+\frac{9}{14}log\frac{9}{14}]$
+即选择outlook作为决策树的根节点时，信息增益为0.94-0.693=0.247。</p>
+
+<p>同样方法计算当选择temperature、humidity、windy作为根节点时系统的信息增益，选择IG值最大的作为最终的根节点。</p>
+
+<h2 id="mutual-information">互信息Mutual Information</h2>
+<p>$y_j$对$x_i$的互信息定义为后验概率与先验概率比值的对数。</p>
+
+<p>\begin{equation} 
+I(x_i;y_j) = log \frac{p(x_i|y_j)}{p(x_i}=I(x_i)-I(x_i|y_j)
+\label{eq:mutual_information} 
+\end{equation}
+互信息越大，表明$y_j$对于确定$x_i$的取值的贡献度越大。
+系统的平均互信息：
+\begin{equation} 
+I(X:Y) = \sum_i \sum_j p(x_i,y_j)I(x_i;y_j) = \sum_i \sum_jp(x_i,y_j)log \frac{p(x_i|y_j)}{p(x_i}
+=H(X)-H(X|Y)=H(Y)-H(Y|X)
+\label{eq:avg_mutual_information} 
+\end{equation}</p>
+
+<p><em>可见平均互信息就是信息增益！</em></p>
+
+<h3 id="section-3">互信息在特征选择中的应用</h3>
+<p>词条w与类别$c_i$的互信息为
+\begin{equation} 
+MI(w,c_i) = log \frac{p(w|c_i)}{p(w}
+\label{eq:mutual_information_app} 
+\end{equation}</p>
+
+<p>$p(w)$表示出现$w$的文档点总文档数目的比例,
+$p(w|c_i)$表示在类别
+$c_i$中出现$w$的文档点总文档数目的比例。</p>
+
+<p>对整个系统来说，词条$w$的互信息为
+\begin{equation} 
+MI_{avg}(w,c_i) = \sum_ip(c_i)log \frac{p(w|c_i)}{p(w}
+\label{eq:avg_mutual_information_app} 
+\end{equation}
+最后选互信息最大的前K个词条作为特征项。</p>
+
+<h2 id="cross-entropy">交叉熵Cross Entropy</h2>
+<p>交叉熵是一种万能的Monte-Carlo技术，常用于稀有事件的仿真建模、多峰函数的最优化问题。交叉熵技术已用于解决经典的旅行商问题、背包问题、最短路问题、最大割问题等。这里给一个文章链接：<a href="http://eprints.eemcs.utwente.nl/7716/01/fulltext.pdf">A Tutorial on the Cross-Entropy Method</a></p>
+
+<p>交叉熵算法的推导过程中又牵扯出来一个问题：如何求一个数学期望？常用的方法有这么几种：</p>
+
+<ul>
+  <li>概率方法，比如Crude Monte-Carlo</li>
+  <li>测度变换法change of measure</li>
+  <li>偏微分方程的变量代换法</li>
+  <li>Green函数法</li>
+  <li>Fourier变换法</li>
+</ul>
+
+<p>在实际中变量X服从的概率分布h往往是不知道的，我们会用g来近似地代替h—-这本质上是一种函数估计。有一种度量g和h相近程度的方法叫Kullback-Leibler距离，又叫交叉熵：</p>
+
+<p>\begin{equation} 
+D(g,h) = E_g log \frac{g(X)}{h(X)} = \frac{1}{N}\sum_{i=1}g(x_i)log\frac{g(x_i)}{h(x_i)}
+\label{eq:kullback-leibler} 
+\end{equation}</p>
+
+<p>通常选取g和h具有相同的概率分布类型（比如已知h是指数分布，那么就选g也是指数分布）—-参数估计，只是pdf参数不一样（实际上h中的参数根本就是未知的）。</p>
+
+<h3 id="section-4">基于期望交叉熵的特征项选择</h3>
+
+<p>\begin{equation} 
+CE(w) = \sum_ip(c_i|w)log\frac{p(c_i|w)}{p(c_i)}
+\label{eq:kullback-leibler_app} 
+\end{equation}</p>
+
+<p>$p(c_i|w)$表示在出现词条
+$w$时文档属于
+类别$c_i$的概率。</p>
+
+<p>交叉熵反应了文本类别的概率分布与在出现了某个词条的情况下文本类别的概率分布之间的距离。词条的交叉熵越大，对文本类别分布影响也就越大。所以选CE最大的K个词条作为最终的特征项。</p>
+
+<p>(全文完)</p>
+
+<p>原文来自:<a href="http://www.cnblogs.com/zhangchaoyang/articles/2655785.html">博客园（华夏35度）</a></p>
+
+</section>
+<section align="right">
+<br/>
+<span>
+	<a  href="/2013/10/resume" class="pageNav"  >上一篇</a>
+	&nbsp;&nbsp;&nbsp;
+	<a   class="pageNavInvalid"  >下一篇</a>
+</span>
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'nwf5d'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = '/2013/10/resume';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+        </article>
+        <a style="position:fixed;bottom:5px;right:5px;" href="#" title="Back to Top">
+            <img src="/assets/btt.png" />
+        </a> 
+      </div>
+
+      <table class="table table-bordered table-striped table-condensed">
+      <tr>
+        <td></td>
+      </tr>
+
+    <footer>
+        <p><small>
+            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2014 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
+    </footer>
+
+    </div>
+  </body>
+</html>

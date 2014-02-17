@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="聂文峰" />
-    <title>做有价值的事 | 聂文峰</title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link href="/feed/" rel="alternate" title="聂文峰" type="application/atom+xml" />
-    <link rel="stylesheet" href="/media/css/style.css">
-    <link rel="stylesheet" href="/media/css/highlight.css">
+    <meta name="author" content="Richard Nieh" />
+    <title>做有价值的事</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="/feed/" rel="alternate" title="Richard Nieh" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/table.css" />
+    <link rel="stylesheet" href="/media/css/style.css" />
+    <link rel="stylesheet" href="/media/css/pygments/emacs.css" />
+    <!--
+    <link rel="stylesheet" href="/media/css/highlight.css" />
+    -->
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/outliner.js"></script>
+
+    <!-- MathJax for LaTeX -->
+        <script type="text/x-mathjax-config"> 
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } }
+        }); 
+        </script>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ['$$$','$$$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+        </script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
   </head>
-  <body>
+<!--  <body> 
+-->
+  <script type="text/javascript">
+    function setTimeSpan(){
+    	var date = new Date();
+    	timeSpan.innerText=date.format('yyyy-MM-dd hh:mm:ss');
+    }
+    
+    Date.prototype.format = function(format)
+		{
+    var o =
+    	{
+    	    "M+" : this.getMonth()+1, //month
+    	    "d+" : this.getDate(),    //day
+    	    "h+" : this.getHours(),   //hour
+    	    "m+" : this.getMinutes(), //minute
+    	    "s+" : this.getSeconds(), //second
+    	    "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+    	    "S" : this.getMilliseconds() //millisecond
+    	}
+    	if(/(y+)/.test(format))
+    	format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    	for(var k in o)
+    	if(new RegExp("("+ k +")").test(format))
+    	format = format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+    	return format;
+		}
+  </script>
+  <body onLoad="setInterval(setTimeSpan,1000);">
     <div id="container">
       <div id="main" role="main">
         <header>
         <h1>做有价值的事</h1>
         </header>
-        <nav>
+        <nav id="real_nav">
         <span><a title="home page" class="" href="/">home</a></span>
         <span><a title="about" class="" href="/about/">about</a></span>
         <span><a title="publication" class="" href="/publication/">publication</a></span>
@@ -26,9 +76,52 @@
         <span><a title="tags" class="" href="/tags/">tags</a></span>
         <span><a title="links" class="" href="/links/">links</a></span>
         <span><a title="subscribe by RSS" class="" href="/feed/">subscribe</a></span>
+
+        <!--
+        <span><a title="home" class="" href="/">home</a></span>
+        <span><a title="categories" class="" href="/categories/">categories</a></span>
+        <span><a title="tags" class="" href="/tags/">tags</a></span>
+        <span><a title="logs" class="" href="/logs/">Log</a></span> 
+        <span><a title="about" class="" href="/about/">about</a></span>
+        <span><a title="subscribe by RSS" class="" href="/feed/">Subscribe</a></span>
+        <span><a title="sports" class="" href="/sports/">Sport</a></span>
+        <span><a title="game" class="" href="/game/">Game</a></span>  
+        <span><a title="guestbook" class="" href="/guestbook/">guestbook</a></span>
+        <span><a title="友情链接" class="" href="/links/">链接</a></span>
+        <span><a title="种子订阅" class="" href="/feed/" target="_blank">订阅</a></span> 
+        -->
         </nav>
         <article class="content">
-        <section class="post">
+        <section class="meta">
+<span class="time">
+  <time datetime="2012-11-27">2012-11-27</time>
+</span>
+
+ | 
+<span class="categories">
+  categories
+  
+  <a href="/categories/#Thinking" title="Thinking">Thinking</a>&nbsp;
+  
+  <a href="/categories/#Working" title="Working">Working</a>&nbsp;
+  
+</span>
+
+
+ | 
+<span class="tags">
+  tags
+  
+  <a href="/tags/#时间" title="时间">时间</a>&nbsp;
+  
+  <a href="/tags/#效率" title="效率">效率</a>&nbsp;
+  
+  <a href="/tags/#目标" title="目标">目标</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="post">
 <p>先从两件事情说起。第一件事情是一年前研究三种日志采集的开源实现，chukwa、Scribe和Flume,总的时间有超过两个月，最后以失败告终。当时总结的原因是：</p>
 
 <ol>
@@ -52,40 +145,13 @@
 <hr />
 
 </section>
-<section class="meta">
-<span class="author">
-  <a href="http://nwf5d.github.com">聂文峰</a>
+<section align="right">
+<br/>
+<span>
+	<a  href="/2012/11/create-blog-with-git" class="pageNav"  >上一篇</a>
+	&nbsp;&nbsp;&nbsp;
+	<a  href="/2013/10/resume" class="pageNav"  >下一篇</a>
 </span>
-<span class="time">
-  /
-  <time datetime="2012-11-27">2012-11-27</time>
-</span>
-<br />
-<span class="license">
-  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
-</span>
-
-<span class="categories">
-  in categories
-  
-  <a href="/categories/#Thinking" title="Thinking">Thinking</a>&nbsp;
-  
-  <a href="/categories/#Working" title="Working">Working</a>&nbsp;
-  
-</span>
-
-
-<span class="tags">
-  tagged with 
-  
-  <a href="/tags/#时间" title="时间">时间</a>&nbsp;
-  
-  <a href="/tags/#效率" title="效率">效率</a>&nbsp;
-  
-  <a href="/tags/#目标" title="目标">目标</a>&nbsp;
-  
-</span>
-
 </section>
 <section class="comment">
 <div id="disqus_thread"></div>
@@ -105,18 +171,19 @@
 </section>
 
 
+
 <script type="text/javascript">
 $(function(){
   $(document).keydown(function(e) {
     var url = false;
         if (e.which == 37 || e.which == 74) {  // Left arrow and J
             
-        url = '/2012/11/create-blog-with-git/';
+        url = '/2012/11/create-blog-with-git';
         
         }
         else if (e.which == 39 || e.which == 75) {  // Right arrow and K
             
-        url = '/2013/05/perceptron/';
+        url = '/2013/10/resume';
         
         }
         if (url) {
@@ -126,20 +193,22 @@ $(function(){
 })
 </script>
 
-
-
         </article>
+        <a style="position:fixed;bottom:5px;right:5px;" href="#" title="Back to Top">
+            <img src="/assets/btt.png" />
+        </a> 
       </div>
+
+      <table class="table table-bordered table-striped table-condensed">
+      <tr>
+        <td></td>
+      </tr>
+
+    <footer>
+        <p><small>
+            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2014 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
+    </footer>
+
     </div>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-1988641-2']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
   </body>
 </html>

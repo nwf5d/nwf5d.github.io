@@ -251,7 +251,7 @@ padding:0 3px 2px;
 
 code {
 color:#d14;
-background-color:#f7f7f9;
+background-color:#D0D0D0;
 border:1px solid #e1e1e8;
 padding:3px 4px;
 }
@@ -490,4 +490,27 @@ float:left;
 
 .pager .next a,.pull-right {
 float:right;
+}
+
+.table.gridtable{
+	font-family:verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width:1px;
+	border-color:#666666;
+	border-collapse:collapse;
+}
+.table.gridtableth{
+	border-width:1px;
+	padding:8px;
+	border-style:solid;
+	border-color:#666666;
+	background-color:#dedede;
+}
+.table.gridtabletd{
+	border-width:1px;
+	padding:8px;
+	border-style:solid;
+	border-color:#666666;
+	background-color:#ffffff;
 }

@@ -1,9 +1,10 @@
-markdown: rdiscount
+#markdown: rdiscount
 #markdown: pandoc
+markdown: kramdown
 #pandoc:
-#    extensions: [mathjax, standalone]
+#    extensions: [smart, mathjax, standalone]
 permalink: /:year/:month/:title/
+excerpt_link: "阅读全文" # 用于提示阅读完整文章的文字链接
 #url: http://yihui.name/cn
 author: 聂文峰
-pygments: true
-
+#pygments: true

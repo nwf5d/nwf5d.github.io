@@ -1,10 +1,36 @@
-#markdown: rdiscount
-#markdown: pandoc
+# my new items
 markdown: kramdown
-#pandoc:
-#    extensions: [smart, mathjax, standalone]
-permalink: /:year/:month/:title/
-excerpt_link: "阅读全文" # 用于提示阅读完整文章的文字链接
-#url: http://yihui.name/cn
-author: 聂文峰
-#pygments: true
+#markdown: redcarpet
+redcarpet:
+    extensions: ["tables"] 
+permalink: /:year/:month/:title 
+github: nwf5d
+duoshuo: nwf5d
+email: nwfengwolf@gmail.com
+#url: http://nwf5d.github.io
+#url: localhost:4000
+name: Richard Nieh
+author: Richard Nieh
+img_url: http://nwf5d.github.com/assets/images
+code_dir: /assets/code
+weibo: 745689147
+
+# markdown: rdiscount
+# permalink: /:title/
+# url: http://89ao.info
+# name: 89Ao.info
+# author: AoGang
+# qq: 103230005
+# email: 89ao@live.com
+# duoshuo: 89ao
+#beian: 浙ICP备12026616号
+#cnzz: 119959
+# weibo: 2067815867
+# github: 89ao
+pygments: true
+safe: true
+paginate: 20
+about: "攻城狮一头，目前从事Linux的相关运维。	
+热爱Linux，开源爱好者，喜欢虚拟化，github等。		
+电脑洁癖与性能癖。  	
+偶尔微博，偶尔wow。"
