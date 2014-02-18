@@ -1,74 +1,181 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Nwf5d.github.com : My Personal Blog." />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Richard Nieh" />
+    <title>Richard Nieh - Dreams Make People Different!</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="/feed/" rel="alternate" title="Richard Nieh" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/table.css" />
+    <link rel="stylesheet" href="/media/css/style.css" />
+    <link rel="stylesheet" href="/media/css/pygments/emacs.css" />
+    <!--
+    <link rel="stylesheet" href="/media/css/highlight.css" />
+    -->
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/outliner.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!-- MathJax for LaTeX -->
+        <script type="text/x-mathjax-config"> 
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" } }
+        }); 
+        </script>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ['$$$','$$$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+        </script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-    <title>Nwf5d.github.com</title>
   </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/nwf5d">View on GitHub</a>
-
-          <h1 id="project_title">Nwf5d.github.com</h1>
-          <h2 id="project_tagline">My Personal Blog.</h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+<!--  <body> 
+-->
+  <script type="text/javascript">
+    function setTimeSpan(){
+    	var date = new Date();
+    	timeSpan.innerText=date.format('yyyy-MM-dd hh:mm:ss');
+    }
     
+    Date.prototype.format = function(format)
+		{
+    var o =
+    	{
+    	    "M+" : this.getMonth()+1, //month
+    	    "d+" : this.getDate(),    //day
+    	    "h+" : this.getHours(),   //hour
+    	    "m+" : this.getMinutes(), //minute
+    	    "s+" : this.getSeconds(), //second
+    	    "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+    	    "S" : this.getMilliseconds() //millisecond
+    	}
+    	if(/(y+)/.test(format))
+    	format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    	for(var k in o)
+    	if(new RegExp("("+ k +")").test(format))
+    	format = format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+    	return format;
+		}
+  </script>
+  <body onLoad="setInterval(setTimeSpan,1000);">
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Dreams Make People Different!</h1>
+        </header>
+        <nav id="real_nav">
+        <span><a title="home page" class="" href="http://nwf5d.github.io/">home</a></span>
+        <span><a title="about" class="" href="http://nwf5d.github.io/about/">about</a></span>
+        <span><a title="publication" class="" href="http://nwf5d.github.io/publication/">publication</a></span>
+        <span><a title="guestbook" class="" href="http://nwf5d.github.io/guestbook/">guestbook</a></span>
+        <span><a title="vitae" class="" href="http://nwf5d.github.io/vitae/">vitae</a></span>
+        <span><a title="categories" class="" href="http://nwf5d.github.io/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://nwf5d.github.io/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://nwf5d.github.io/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://nwf5d.github.io/feed/">subscribe</a></span>
 
+        <!--
+        <span><a title="home" class="" href="/">home</a></span>
+        <span><a title="categories" class="" href="/categories/">categories</a></span>
+        <span><a title="tags" class="" href="/tags/">tags</a></span>
+        <span><a title="logs" class="" href="/logs/">Log</a></span> 
+        <span><a title="about" class="" href="/about/">about</a></span>
+        <span><a title="subscribe by RSS" class="" href="/feed/">Subscribe</a></span>
+        <span><a title="sports" class="" href="/sports/">Sport</a></span>
+        <span><a title="game" class="" href="/game/">Game</a></span>  
+        <span><a title="guestbook" class="" href="/guestbook/">guestbook</a></span>
+        <span><a title="友情链接" class="" href="/links/">链接</a></span>
+        <span><a title="种子订阅" class="" href="/feed/" target="_blank">订阅</a></span> 
+        -->
+        </nav>
+        <article class="content">
+        <section class="post">
+<ul class="listing">
+
+  
+  
+    
+    <li class="listing-seperator">2014</li>
+  
+  <li class="listing-item">
+    <time datetime="2014-02-16">2014-02-16</time>
+    <a href="http://nwf5d.github.io/2014/02/information-theory" title="信息论">信息论</a>
+  </li>
+
+  
+  
+    
+    <li class="listing-seperator">2013</li>
+  
+  <li class="listing-item">
+    <time datetime="2013-10-25">2013-10-25</time>
+    <a href="http://nwf5d.github.io/2013/10/resume" title="个人简历">个人简历</a>
+  </li>
+
+  
+  
+    
+    <li class="listing-seperator">2012</li>
+  
+  <li class="listing-item">
+    <time datetime="2012-11-27">2012-11-27</time>
+    <a href="http://nwf5d.github.io/2012/11/do-a-good-job" title="做有价值的事">做有价值的事</a>
+  </li>
+
+  
+  
+  <li class="listing-item">
+    <time datetime="2012-11-16">2012-11-16</time>
+    <a href="http://nwf5d.github.io/2012/11/create-blog-with-git" title="github上搭建自己的博客">github上搭建自己的博客</a>
+  </li>
+
+  
+  
+  <li class="listing-item">
+    <time datetime="2012-10-10">2012-10-10</time>
+    <a href="http://nwf5d.github.io/2012/10/clear-zookeeper-log" title="定时清除Zookeeper日志【转】">定时清除Zookeeper日志【转】</a>
+  </li>
+
+  
+  
+  <li class="listing-item">
+    <time datetime="2012-06-27">2012-06-27</time>
+    <a href="http://nwf5d.github.io/2012/06/exploring-clojure" title="clojure基础">clojure基础</a>
+  </li>
+
+  
+  
+  <li class="listing-item">
+    <time datetime="2012-06-24">2012-06-24</time>
+    <a href="http://nwf5d.github.io/2012/06/hello-everybody" title="终于折腾好github+Jekyll的博客了">终于折腾好github+Jekyll的博客了</a>
+  </li>
+
+</ul>
+
+
+</section>
+
+
+
+        </article>
+        <a style="position:fixed;bottom:5px;right:5px;" href="#" title="Back to Top">
+            <img src="/assets/btt.png" />
+        </a> 
+      </div>
+
+      <table class="table table-bordered table-striped table-condensed">
+      <tr>
+        <td></td>
+      </tr>
+
+    <footer>
+        <p><small>
+            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2014 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
+    </footer>
+
+    </div>
   </body>
 </html>
