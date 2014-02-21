@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Richard Nieh" />
-    <title>clojure基础</title>
+    <title>推荐算法分类</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href="/feed/" rel="alternate" title="Richard Nieh" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/css/table.css" />
@@ -64,7 +64,7 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>clojure基础</h1>
+        <h1>推荐算法分类</h1>
         </header>
         <nav id="real_nav">
         <span><a title="home page" class="" href="/">home</a></span>
@@ -94,14 +94,14 @@
         <article class="content">
         <section class="meta">
 <span class="time">
-  <time datetime="2012-06-27">2012-06-27</time>
+  <time datetime="2014-02-19">2014-02-19</time>
 </span>
 
  | 
 <span class="categories">
   categories
   
-  <a href="/categories/#Technology" title="Technology">Technology</a>&nbsp;
+  <a href="/categories/#Machine Learning" title="Machine Learning">Machine Learning</a>&nbsp;
   
 </span>
 
@@ -110,156 +110,127 @@
 <span class="tags">
   tags
   
-  <a href="/tags/#clojure" title="clojure">clojure</a>&nbsp;
+  <a href="/tags/#推荐算法" title="推荐算法">推荐算法</a>&nbsp;
   
-  <a href="/tags/#lisp" title="lisp">lisp</a>&nbsp;
+  <a href="/tags/#分类" title="分类">分类</a>&nbsp;
   
-  <a href="/tags/#language" title="language">language</a>&nbsp;
+  <a href="/tags/#总结" title="总结">总结</a>&nbsp;
   
 </span>
 
 </section>
 <section class="post">
-<p>Clojure基础：</p>
+<h2 id="item-based-collective-filtering">Item based collective filtering</h2>
 
-<ol>
-  <li>Forms</li>
-  <li>Reader macros</li>
-  <li>Functions</li>
-  <li>Buildings and namespaces</li>
-  <li>Flow control</li>
-  <li>Metadata</li>
-</ol>
+<p>总结：物以类聚</p>
 
-<h1 id="a">a</h1>
-<p># b
-# c</p>
+<p>应用场景：item相对固定，且item数相对user更少。如商城网站、影视类推荐、图书类推荐、音乐推荐等。</p>
+
+<p>方法：离线计算item的相似度矩阵供线上使用</p>
+
+<p>缺点：由于基于item的相似性，故推荐的item相似，缺乏多样性</p>
+
+<h2 id="user-based-collective-filtering">user based collective filtering</h2>
+
+<p>总结：人以群分,找和用户有相同品味的其他用户</p>
+
+<p>适用范围：item更新频繁的应用，如: 资讯类服务的应用(以指阅，无觅为代表)等。</p>
+
+<p>方法：通过相似用户喜欢的item推荐给该用户</p>
+
+<p>缺点：相似用户群比较敏感，要频繁地计算出用户的相似用户矩阵，运算量会非常大。推荐的大多是大家都喜欢的热门推荐，有点趋于大众化了</p>
+
+<h2 id="content-based">content based</h2>
+
+<p>方法：通过文本挖掘方法，提取Item内容(如:媒体的简介，资讯的内容，宝贝的介绍等)的关键词计算相似度; 通过用户的浏览或搜索等行为，提取用户的偏好，也可以在用户注册时显式获取，如让他选择感兴趣的主题或是对看过的影片打分等(当然这些影片都是随机选取的，以保证多样性)。</p>
+
+<p>好处：可以解决Item的冷启动问题; 不需要user-item的评分矩阵，所以没有数据稀疏问题</p>
+
+<h2 id="slope-one">slope one</h2>
+
+<p>方法：Slope One的基本概念很简单，例子1，用户X，Y和A都对Item1打了分。 同时用户X,Y还对Item2打了分，用户A对Item2可能会打多少分呢?</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>User</td>
+      <td>Rating to Item 1</td>
+      <td>Rating to Item 2</td>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td>5</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>4</td>
+      <td>?</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>根据SlopeOne算法，应该是:4 - ((5-3) + (4-3))/2 = 2。5。</p>
+
+<p>优点：简单，快速</p>
+
+<p>缺点：效果一般，因为算法总是把你的口味与大众的平均口味作对等，容易让推荐结果趋向一致，也即是大从的平均口味</p>
+
+<h2 id="svd">svd</h2>
+
+<p>Singular Value Decomposition（奇异值分解）</p>
+
+<p>总结：擒贼先擒王。 抓主要矛盾，忽略次要矛盾，与PCA(主成分分析)类似</p>
+
+<p>方法：这个方法是提取一般实矩阵“特征值”的算法,（这里特征值加引号是因为，特征值是针对方阵来定义的，而一般的$mxn$的实矩阵是没有特征值的。）将一个$mxn$的实矩阵和它的转置相乘，就会得到一个方阵，然后对这个方阵做特征值分解，得到的特征值就是所谓的奇异值的平方。拿到奇异值后，我们就可以抓到主要的成分，丢掉次要和非常次要的成分进行分析。也就是说，我们可以对原来的庞大的常常又非常稀疏的矩阵进行降维和分解，而分解后得到的矩阵都是稠密矩阵。最终我们会得到一个表示user特性的矩阵和一个表示item特性的矩阵。拿到这些数据之后，我们就可以进行推荐了，而且也可以很容易地进行聚类分析。</p>
+
+<p>好处:可以解决rating矩阵的稀疏性问题，同时可以降低矩阵的维度，提高运算速度。</p>
+
+<p>缺点:是付出的空间代价太大</p>
+
+<h2 id="section">聚类算法</h2>
+
+<p>总结：降低维度以及为并行计算作准备</p>
+
+<p>方法：拿到rating矩阵之后，可以通过这些评分将用户自然地聚成几簇，然后用上述的算法对各个簇做推荐算法并行计算，充分地利用好所有计算资源。当然你也可以在svd分解之后，拿到user和item矩阵之后，对这两个矩阵分别作聚类分析，你可以得到user的簇以及item的簇。这样的结果会非常有意义，你可以作好友推荐，相似item推荐等等。</p>
+
+<p>在基于内容的算法中，因为很多资讯之间并不是那么的相关，把他们都相互计算相似度，会得到很多的0，所以没有必要。因此可以在计算之前，对整个item做个聚类，然后分别对各簇来做相似度计算。
+最简单的就是k-means。</p>
+
+<h2 id="section-1">组合算法</h2>
+
+<p>总结：博采众长</p>
+
+<p>方法：任何一个算法都有它独特的优势和固有的缺陷，因此单用一个算法的web应用很少，往往是将各种算法组合起来用。</p>
 
 <ul>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
+  <li>将多种算法计算出来的结果，加权之后排序推荐给用户。</li>
+  <li>将多种算法计算出来的结果，各取前几个推荐给用户，这样做的好处是结果很丰富多彩。</li>
+  <li>用svd算法填充后的矩阵作为输入，用普通cf做计算来输出，然后排序推荐。这种叫做层次推荐，可以得到两种方法的好处。</li>
+  <li>对新用户做基于内容的推荐，因为新用户没有任何评分数据，对老用户用cf来做。</li>
 </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Left align</th>
-      <th style="text-align: right">Right align</th>
-      <th style="text-align: center">Center align</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">This</td>
-      <td style="text-align: right">This</td>
-      <td style="text-align: center">This</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">column</td>
-      <td style="text-align: right">column</td>
-      <td style="text-align: center">column</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">will</td>
-      <td style="text-align: right">will</td>
-      <td style="text-align: center">will</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">be</td>
-      <td style="text-align: right">be</td>
-      <td style="text-align: center">be</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">left</td>
-      <td style="text-align: right">right</td>
-      <td style="text-align: center">center</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">aligned</td>
-      <td style="text-align: right">aligned</td>
-      <td style="text-align: center">aligned</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="section-2">参考资料</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Left align</th>
-      <th style="text-align: right">Right align</th>
-      <th style="text-align: center">Center align</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">This</td>
-      <td style="text-align: right">This</td>
-      <td style="text-align: center">This</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">column</td>
-      <td style="text-align: right">column</td>
-      <td style="text-align: center">column</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">will</td>
-      <td style="text-align: right">will</td>
-      <td style="text-align: center">will</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">be</td>
-      <td style="text-align: right">be</td>
-      <td style="text-align: center">be</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">left</td>
-      <td style="text-align: right">right</td>
-      <td style="text-align: center">center</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">aligned</td>
-      <td style="text-align: right">aligned</td>
-      <td style="text-align: center">aligned</td>
-    </tr>
-  </tbody>
-</table>
+<p>[1]. <a href="http://eric-gcm.iteye.com/blog/1940273">推荐引擎的几种算法总结（转）</a></p>
 
-<p>Clojue code is composed of Clojure data. </p>
-<table>
-    <tr>
-        <td>Form		Examples			Primary Coverage </td>
-    </tr>
-</table>
-<p>|Form Examples|Primary Coverage
-|:—-|—:
-|Boolean|true,false
-|Character |\a 
-|Keyword |:tag,:doc
-|List |(1,2,3_),(println “foo”)
-|Map |{:name “Bill”, :age 42}
-|Nil |nil
-|Number |1,4.2
-|Set |#{:snap:crackle:pop}
-|String |”hello”
-|Symbol |user/foo,java.lang.String
-|Vector  |[1 2 3]</p>
+<p>[2]. <a href="http://blog.csdn.net/wolfguypan/article/details/12587731">推荐算法分类</a></p>
 
-<h1 id="mapskeywords-and-structs">Maps,Keywords and Structs</h1>
-<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”})
-(def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
-
-<p>(inventors “Lisp”)  =&gt;  “MacCarthy”
-(inventors “Foo”) =&gt; nil</p>
+<p>-全文完-</p>
 
 
 </section>
 <section align="right">
 <br/>
 <span>
-	<a  href="/2012/06/hello-everybody" class="pageNav"  >上一篇</a>
+	<a  href="/2014/02/information-theory" class="pageNav"  >上一篇</a>
 	&nbsp;&nbsp;&nbsp;
-	<a  href="/2012/10/clear-zookeeper-log" class="pageNav"  >下一篇</a>
+	<a   class="pageNavInvalid"  >下一篇</a>
 </span>
 </section>
 <section class="comment">
@@ -287,13 +258,11 @@ $(function(){
     var url = false;
         if (e.which == 37 || e.which == 74) {  // Left arrow and J
             
-        url = '/2012/06/hello-everybody';
+        url = '/2014/02/information-theory';
         
         }
         else if (e.which == 39 || e.which == 75) {  // Right arrow and K
             
-        url = '/2012/10/clear-zookeeper-log';
-        
         }
         if (url) {
             window.location = url;

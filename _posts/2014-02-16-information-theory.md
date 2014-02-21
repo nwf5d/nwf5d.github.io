@@ -2,7 +2,7 @@
 layout: post
 title: "信息论"
 categories:
-- machine learning 
+- Machine Learning 
 tags:
 - 机器学习
 - 信息
