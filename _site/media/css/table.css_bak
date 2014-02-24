@@ -1,27 +1,21 @@
 * + table {
-    width:80%;
-    border-collapse:collapse;
+    border-style:solid;
+    border-width:1px;
+    border-color:#e7e3e7;
 }
 
 * + table th, * + table td {
+	border-style:dashed;
 	border-width:1px;
-    font-size:1.0em;
-    border:1px;
-	padding:2px 4px 1px 4px;
+	border-color:#e7e3e7;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 * + table th {
-    font-size:1.0em;
-    text-align:left;
-    padding-top:3px;
-    padding-bottom:2px;
-    background-color:#696969;
-    color:#ffffff;
-}
-
-* + table tr.alt td {
-    color:#000000;
-    background-color:#DCDCDC;
+	border-style:solid;
+	font-weight:bold;
+	background: url("/images/noise.png?1330434582") repeat scroll left top #F7F3F7;
 }
 
 * + table th[align="left"], * + table td[align="left"] {
@@ -35,4 +29,3 @@
 * + table th[align="center"], * + table td[align="center"] {
 	text-align:center;
 }
-

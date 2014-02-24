@@ -87,7 +87,7 @@ $p(c_i|\overline{w})$ 表示没有出现w的文档集合中属于类别i的文�
 ### 信息增益在决策树中的应用
 
 | outlook | temperature | humidity | windy | play |
-|----|:----|:----|:----|:----|
+|----|:----|:----|:----|----:|
 | sunny | hot | high | FALSE | no |
 | sunny | hot | high | TRUE | no |
 | overcast | hot | high | FALSE | yes |
@@ -108,7 +108,7 @@ $p(c_i|\overline{w})$ 表示没有出现w的文档集合中属于类别i的文�
 只看最后一列我们得到打球的概率是9/14，不打球的概率是5/14。因此在没有任何先验信息的情况下，系统的熵（不确定性）为
 $H(X)=-\frac{9}{14}log\frac{9}{14}-\frac{5}{14}log\frac{5}{14}=0.94$
 
-|outlook | temperature | humidity | windy | play |
+|outlook|| | temperature|| | humidity ||| windy ||| play ||
 |  | yes | no | | yes | no | | yes | no | | yes | no | yes | no |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | sunny | 2 | 3 | hot | 2 | 2 | high | 3 | 4 | FALSE | 6 | 2 | 9 | 5 |

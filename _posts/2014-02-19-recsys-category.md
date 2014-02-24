@@ -45,7 +45,7 @@ User |Rating to Item 1|    Rating to Item 2
    Y |   4 |  3
    A |   4 |  ?
 
-根据SlopeOne算法，应该是:4 - ((5-3) + (4-3))/2 = 2。5。
+根据SlopeOne算法，应该是:4 - ((5-3) + (4-3))/2 = 2.5
 
 优点：简单，快速
 
