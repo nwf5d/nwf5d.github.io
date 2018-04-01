@@ -67,15 +67,15 @@
         <h1>Python面试题</h1>
         </header>
         <nav id="real_nav">
-        <span><a title="home page" class="" href="http://nwf5d.net/">home</a></span>
-        <span><a title="about" class="" href="http://nwf5d.net/about/">about</a></span>
-        <span><a title="publication" class="" href="http://nwf5d.net/publication/">publication</a></span>
-        <span><a title="guestbook" class="" href="http://nwf5d.net/guestbook/">guestbook</a></span>
-        <span><a title="vitae" class="" href="http://nwf5d.net/vitae/">vitae</a></span>
-        <span><a title="categories" class="" href="http://nwf5d.net/categories/">categories</a></span>
-        <span><a title="tags" class="" href="http://nwf5d.net/tags/">tags</a></span>
-        <span><a title="links" class="" href="http://nwf5d.net/links/">links</a></span>
-        <span><a title="subscribe by RSS" class="" href="http://nwf5d.net/feed/">subscribe</a></span>
+        <span><a title="home page" class="" href="http://localhost:4000/">home</a></span>
+        <span><a title="about" class="" href="http://localhost:4000/about/">about</a></span>
+        <span><a title="publication" class="" href="http://localhost:4000/publication/">publication</a></span>
+        <span><a title="guestbook" class="" href="http://localhost:4000/guestbook/">guestbook</a></span>
+        <span><a title="vitae" class="" href="http://localhost:4000/vitae/">vitae</a></span>
+        <span><a title="categories" class="" href="http://localhost:4000/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://localhost:4000/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://localhost:4000/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://localhost:4000/feed/">subscribe</a></span>
 
         <!--
         <span><a title="home" class="" href="/">home</a></span>
@@ -118,7 +118,7 @@
 
 </section>
 <section class="post">
-<h2 id="python">Python如何实现单例模式？   </h2>
+<h2 id="python如何实现单例模式">Python如何实现单例模式？   </h2>
 <p>Python有两种方式可以实现单例模式，下面两个例子使用了不同的方式实现单例模式：  </p>
 
 <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.python .numberLines}
@@ -154,7 +154,7 @@ def getinstance(): 
 <p>@singleton 
 class MyClass: „ </p>
 
-<h2 id="lambda">什么是lambda函数？ </h2>
+<h2 id="什么是lambda函数">什么是lambda函数？ </h2>
 
 <p>Python允许你定义一种单行的小函数。定义lambda函数的形式如下：labmda 参数：表达式lambda函数默认返回表达式的值。你也可以将其赋值给一个变量。lambda函数可以接受任意个参数，包括可选参数，但是表达式只有一个：</p>
 
@@ -185,7 +185,7 @@ class MyClass: „ </p>
 
 <p>如果你的函数非常简单，只有一个表达式，不包含命令，可以考虑lambda函数。否则，你还是定义函数才对，毕竟函数没有这么多限制。 </p>
 
-<h2 id="python-1">Python是如何进行类型转换的？ </h2>
+<h2 id="python是如何进行类型转换的">Python是如何进行类型转换的？ </h2>
 
 <p>Python提供了将变量或值从一种类型转换成另一种类型的内置函数。int函数能够将符合数学格式数字型字符串转换成整数。否则，返回错误信息。</p>
 
@@ -213,21 +213,33 @@ ValueError: invalid literal for int(): 1234ab </p>
   </blockquote>
 </blockquote>
 
-<p>函数float将整数和字符串转换成浮点数： 
-»&gt; float(“12”)
+<p>函数float将整数和字符串转换成浮点数： </p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p> float(“12”)
 12.0 
-»&gt; float(“1.111111”)
+ float(“1.111111”)
 1.111111 </p>
+    </blockquote>
+  </blockquote>
+</blockquote>
 
-<p>函数str将数字转换成字符：
-»&gt; str(98)
+<p>函数str将数字转换成字符：</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p> str(98)
 ‘98’ 
-»&gt; str(”76.765″)
+ str(”76.765″)
 ‘76.765’ </p>
+    </blockquote>
+  </blockquote>
+</blockquote>
 
 <p>整数1和浮点数1.0在python中是不同的。虽然它们的值相等的，但却属于不同的类型。这两个数在计算机的存储形式也是不一样。 </p>
 
-<h2 id="python-2">Python如何定义一个函数 </h2>
+<h2 id="python如何定义一个函数">Python如何定义一个函数 </h2>
 
 <p>函数的定义形式如 下： </p>
 
@@ -240,18 +252,20 @@ ValueError: invalid literal for int(): 1234ab </p>
 <blockquote>
   <blockquote>
     <p>def dd(p1, p2): 
-…   print p1, “+”, p2, “=”, p1+p2
-&gt; add(1, 2)
+…   print p1, “+”, p2, “=”, p1+p2</p>
+    <blockquote>
+      <p> add(1, 2)
 1 + 2 = 3 
 函数的目的是把一些复杂的操作隐藏，来简化程序的结构，使其容易阅读。函数在调用前，必须先定义。也可以在一个函数内部定义函数，内部函数只有在外部函数调用时才能够被执行。程序调用函数时，转到函数内部执行函数内部的语句，函数执行完毕后，返回到它离开程序的地方， 执行程序的下一条语句。 </p>
+    </blockquote>
   </blockquote>
 </blockquote>
 
-<h2 id="python-3">Python是如何进行内存管理的？ </h2>
+<h2 id="python是如何进行内存管理的">Python是如何进行内存管理的？ </h2>
 
 <p>Python的内存管理是由Python得解释器负责的，开发人员可以从内存管理事务中解放出来，致力于应用程序的开发，这样就使得开发的程序错误更少，程序更健壮，开发周期更短  </p>
 
-<h2 id="howdoiiterateoverasequenceinreverseorder">如何反序的迭代一个序列？how do I iterate over a sequence in reverse order </h2>
+<h2 id="如何反序的迭代一个序列howdoiiterateoverasequenceinreverseorder">如何反序的迭代一个序列？how do I iterate over a sequence in reverse order </h2>
 
 <p>如果是一个list, 最快的解决方案是： 
 list.reverse()
@@ -266,14 +280,14 @@ for i in range(len(sequence)-1, -1, -1):
     x = sequence[i] 
     &lt;do something with x&gt; </p>
 
-<h2 id="pythontuplelist">Python里面如何实现tuple和list的转换？ </h2>
+<h2 id="python里面如何实现tuple和list的转换">Python里面如何实现tuple和list的转换？ </h2>
 
 <p>函数tuple(seq)可以把所有可迭代的(iterable)序列转换成一个tuple, 元素不变，排序也不变。 
 例如，tuple([1,2,3])返回(1,2,3), tuple(’abc’)返回(’a’.’b’,’c’).如果参数已经是一个tuple的话，函数不做任何拷贝而直接返回原来的对象，所以在不确定对象是不是tuple的时候来调用tuple()函数也不是很耗费的。函数list(seq)可以把所有的序列和可迭代的对象转换成一个list,元素不变，排序也不变。 </p>
 
 <p>例如,list([1,2,3])返回(1,2,3), list(’abc’)返回[‘a’, ’b’, ’c’]。如果参数是一个list, 她会像set[:]一样做一个拷贝</p>
 
-<h2 id="pythonpythonlist">Python面试题：请写出一段Python代码实现删除一个list里面的重复元素 </h2>
+<h2 id="python面试题请写出一段python代码实现删除一个list里面的重复元素">Python面试题：请写出一段Python代码实现删除一个list里面的重复元素 </h2>
 
 <p>可以先把list重新排序，然后从list的最后开始扫描，代码如下：</p>
 
@@ -286,7 +300,7 @@ for i in range(len(List)-2, -1, -1):
     else:
         last=List[i] </p>
 
-<h2 id="python-4">Python文件操作的面试题 </h2>
+<h2 id="python文件操作的面试题">Python文件操作的面试题 </h2>
 
 <p>* 如何用Python删除一个文件？ 
 使用os.remove(filename)或者os.unlink(filename); </p>
@@ -294,7 +308,7 @@ for i in range(len(List)-2, -1, -1):
 <p>* Python如何copy一个文件？ 
 shutil模块有一个copyfile函数可以实现文件拷贝 </p>
 
-<h2 id="python-5">Python里面如何生成随机数？ </h2>
+<h2 id="python里面如何生成随机数">Python里面如何生成随机数？ </h2>
 
 <p>标准库random实现了一个随机数生成器，实例代码如下：</p>
 
@@ -303,7 +317,7 @@ random.random() </p>
 
 <p>它会返回一个随机的0和1之间的浮点数 </p>
 
-<h2 id="python-6">如何用Python来发送邮件？ </h2>
+<h2 id="如何用python来发送邮件">如何用Python来发送邮件？ </h2>
 
 <p>可以使用smtplib标准库。 
 以下代码可    以在支持SMTP监听器的服务器上执行。</p>
@@ -320,54 +334,57 @@ while 1: 
         break 
     msg = msg + line</p>
 
-<h2 id="section"> 发送邮件部分 </h2>
-<p>server = smtplib.SMTP(’localhost’)
+<p>## 发送邮件部分 
+server = smtplib.SMTP(’localhost’)
 server.sendmail(fromaddr, toaddrs, msg)
 server.quit() </p>
 
-<h2 id="python-7">Python里面如何拷贝一个对象？ </h2>
+<h2 id="python里面如何拷贝一个对象">Python里面如何拷贝一个对象？ </h2>
 
 <p>一般来说可以使用copy.copy()方法或者copy.deepcopy()方法，几乎所有的对象都可以被拷贝 
 一些对象可以更容易的拷贝，Dictionaries有一个copy方法： 
 newdict = olddict.copy() </p>
 
-<h2 id="pythonbug">有没有一个工具可以帮助查找python的bug和进行静态的代码分析？ </h2>
+<h2 id="有没有一个工具可以帮助查找python的bug和进行静态的代码分析">有没有一个工具可以帮助查找python的bug和进行静态的代码分析？ </h2>
 
 <p>有，PyChecker是一个python代码的静态分析工具，它可以帮助查找python代码的bug, 会对代码的复杂度和格式提出警告 
 Pylint是另外一个工具可以进行coding standard检查。 </p>
 
-<h2 id="function">如何在一个function里面设置一个全局的变量？ </h2>
+<h2 id="如何在一个function里面设置一个全局的变量">如何在一个function里面设置一个全局的变量？ </h2>
 
 <p>解决方法是在function的开始插入一个global声明： 
 def f()
     global x </p>
 
-<h2 id="abnabab">有两个序列a,b，大小都为n,序列元素的值任意整形数，无序；要求：通过交换a,b中的元素，使[序列a元素的和]与[序列b元素的和]之间的差最小。</h2>
+<h2 id="有两个序列ab大小都为n序列元素的值任意整形数无序要求通过交换ab中的元素使序列a元素的和与序列b元素的和之间的差最小">有两个序列a,b，大小都为n,序列元素的值任意整形数，无序；要求：通过交换a,b中的元素，使[序列a元素的和]与[序列b元素的和]之间的差最小。</h2>
 
 <p>* 将两序列合并为一个序列，并排序，为序列Source 
-* 拿出最大元素Big，次大的元素Small 
-* 在余下的序列S[:-2]进行平分，得到序列max，min 
-* 将Small加到max序列，将Big加大min序列，重新计算新序列和，和大的为max，小的为min.
+* 拿出最大元素Big，次大的元素Small </p>
+<ul>
+  <li>在余下的序列S[:-2]进行平分，得到序列max，min </li>
+  <li>
+    <p>将Small加到max序列，将Big加大min序列，重新计算新序列和，和大的为max，小的为min.
  
 def mean( sorted_list ):
-    if not sorted_list:
-        return (([],[])) 
-    big = sorted_list[-1]
-    small = sorted_list[-2] </p>
+  if not sorted_list:
+      return (([],[])) 
+  big = sorted_list[-1]
+  small = sorted_list[-2] </p>
 
-<pre><code>big_list, small_list = mean(sorted_list[:-2]) 
+    <p>big_list, small_list = mean(sorted_list[:-2]) </p>
 
-big_list.append(small)
-small_list.append(big)
+    <p>big_list.append(small)
+  small_list.append(big)</p>
 
-big_list_sum = sum(big_list)
-small_list_sum = sum(small_list)
+    <p>big_list_sum = sum(big_list)
+  small_list_sum = sum(small_list)</p>
 
-if big_list_sum &gt; small_list_sum: 
-    return ( (big_list, small_list))
-else: 
-    return (( small_list, big_list)) 
-</code></pre>
+    <p>if big_list_sum &gt; small_list_sum: 
+      return ( (big_list, small_list))
+  else: 
+      return (( small_list, big_list)) </p>
+  </li>
+</ul>
 
 <p>tests = [   [1,2,3,4,5,6,700,800], [10001,10000,100,90,50,1], range(1, 11), 
     [12312, 12311, 232, 210, 30, 29, 3, 2, 1, 1] ] </p>
@@ -398,7 +415,7 @@ Result List:    [1, 3, 29, 232, 12311] [1, 2, 30, 210, 12312]
 Distance:       21 
 -<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em>-<em>-</em> </p>
 
-<h2 id="pythonhtmltag">用Python匹配HTML tag的时候，&lt;.<em>&gt;和&lt;.</em>?&gt;有什么区别？ </h2>
+<h2 id="用python匹配htmltag的时候和有什么区别">用Python匹配HTML tag的时候，&lt;.<em>&gt;和&lt;.</em>?&gt;有什么区别？ </h2>
 
 <p>当重复匹配一个正则表达式时候， 例如&lt;.*&gt;, 当程序执行匹配的时候，会返回最大的匹配值 
 例如： </p>
@@ -417,7 +434,7 @@ print(re.match(’&lt;.*?&gt;’, s).group())</p>
 <p>则会返回&lt;html&gt; 
 &lt;.<em>&gt;这种匹配称作贪心匹配 &lt;.</em>?&gt;称作非贪心匹配 </p>
 
-<h2 id="pythonsearchmatch">Python里面search()和match()的区别？ </h2>
+<h2 id="python里面search和match的区别">Python里面search()和match()的区别？ </h2>
 
 <p>match()函数只检测RE是不是在string的开始位置匹配, search()会扫描整个string查找匹配, 也就是说match()只有在0位置匹配成功的话才有返回, 如果不是开始位置匹配成功的话, match()就返回none 例如： </p>
 
@@ -429,7 +446,7 @@ print(re.match(’&lt;.*?&gt;’, s).group())</p>
 <p>例如：print(re.search(‘super’, ’superstition’).span())返回(0, 5)
 print(re.search(‘super’, ’insuperable’).span())返回(2, 7) </p>
 
-<h2 id="python-8">如何用Python来进行查询和替换一个文本字符串？ </h2>
+<h2 id="如何用python来进行查询和替换一个文本字符串">如何用Python来进行查询和替换一个文本字符串？ </h2>
 
 <p>可以使用sub()方法来进行查询和替换，sub方法的格式为：sub(replacement, string[, count=0]) 
 replacement是被替换成的文本
@@ -438,7 +455,7 @@ count是一个可选参数，指最大被替换的数量</p>
 
 <p>例子：</p>
 
-<p>import re </p>
+<p>import re</p>
 
 <p>p = re.compile(’(blue|white|red)’) 
 print(p.sub(’colour’,’blue socks and red shoes’))
@@ -446,7 +463,7 @@ print(p.sub(’colour’,’blue socks and red shoes’, count=1))</p>
 
 <p>输出: 
 colour socks and colour shoes
-colour socks and red shoes </p>
+colour socks and red shoes</p>
 
 <p>subn()方法执行的效果跟sub()一样，不过它会返回一个二维数组，包括替换后的新的字符串和总共替换的数量</p>
 
@@ -462,17 +479,17 @@ print(p.subn(’colour’,’blue socks and red shoes’, count=1))</p>
 (’colour socks and colour shoes’, 2)
 (’colour socks and red shoes’, 1)</p>
 
-<h2 id="except">介绍一下except的用法和作用？</h2>
+<h2 id="介绍一下except的用法和作用">介绍一下except的用法和作用？</h2>
 
 <p>Python的except用来捕获所有异常， 因为Python里面的每次错误都会抛出一个异常，所以每个程序的错误都被当作一个运行时错误。 
-例子： </p>
+例子：</p>
 
 <p>try:
     foo = opne(”file”) ##open被错写为opne 
 except:
     sys.exit(”could not open file!”)</p>
 
-<p>因为这个错误是由于open被拼写成opne而造成的，然后被except捕获，所以debug程序的时候很容易不知道出了什么问题 </p>
+<p>因为这个错误是由于open被拼写成opne而造成的，然后被except捕获，所以debug程序的时候很容易不知道出了什么问题</p>
 
 <p>下面这个例子更好点：
 try: 
@@ -480,7 +497,7 @@ try: 
 except IOError: 
     sys.exit(”could not open file”) </p>
 
-<h2 id="pythonpass">Python中pass语句的作用是什么？ </h2>
+<h2 id="python中pass语句的作用是什么">Python中pass语句的作用是什么？ </h2>
 
 <p>pass语句什么也不做，一般作为占位符或者创建占位程序，pass语句不会执行任何操作，比如： </p>
 
@@ -497,7 +514,7 @@ except IOError: 
 <p>def initlog(*args):
     pass ##please implement this </p>
 
-<h2 id="pythonrange">介绍一下Python下range()函数的用法？ </h2>
+<h2 id="介绍一下python下range函数的用法">介绍一下Python下range()函数的用法？ </h2>
 
 <p>如果需要迭代一个数字序列的话，可以使用range()函数，range()函数可以生成等差级数。如例： 
 for i in range(5):
@@ -587,7 +604,7 @@ $(function(){
 
     <footer>
         <p><small>
-            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2014 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
+            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/unpublish/2014-02-20-python-interview.md" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2018 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
     </footer>
 
     </div>

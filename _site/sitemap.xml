@@ -2,7 +2,16 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://nwf5d.net/2014/03/effective-communication</loc>
+    <loc>http://localhost:4000/2014/04/prml-note-lesson1</loc>
+    
+    <lastmod>2014-04-26T00:00:00+08:00</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/2014/03/effective-communication</loc>
     
     <lastmod>2014-03-01T00:00:00+08:00</lastmod>
     
@@ -11,7 +20,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2014/02/recsys-category</loc>
+    <loc>http://localhost:4000/2014/02/recsys-category</loc>
     
     <lastmod>2014-02-19T00:00:00+08:00</lastmod>
     
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2014/02/information-theory</loc>
+    <loc>http://localhost:4000/2014/02/information-theory</loc>
     
     <lastmod>2014-02-16T00:00:00+08:00</lastmod>
     
@@ -29,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2012/11/do-a-good-job</loc>
+    <loc>http://localhost:4000/2012/11/do-a-good-job</loc>
     
     <lastmod>2012-11-27T00:00:00+08:00</lastmod>
     
@@ -38,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2012/11/create-blog-with-git</loc>
+    <loc>http://localhost:4000/2012/11/create-blog-with-git</loc>
     
     <lastmod>2012-11-16T00:00:00+08:00</lastmod>
     
@@ -47,7 +56,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2012/10/clear-zookeeper-log</loc>
+    <loc>http://localhost:4000/2012/10/clear-zookeeper-log</loc>
     
     <lastmod>2012-10-10T00:00:00+08:00</lastmod>
     
@@ -56,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2012/06/exploring-clojure</loc>
+    <loc>http://localhost:4000/2012/06/exploring-clojure</loc>
     
     <lastmod>2012-06-27T00:00:00+08:00</lastmod>
     
@@ -65,7 +74,7 @@
   </url>
   
   <url>
-    <loc>http://nwf5d.net/2012/06/hello-everybody</loc>
+    <loc>http://localhost:4000/2012/06/hello-everybody</loc>
     
     <lastmod>2012-06-24T00:00:00+08:00</lastmod>
     

@@ -5,17 +5,123 @@
   >
   <channel>
     <title>Richard Nieh</title>
-    <link href="http://nwf5d.net/feed/" rel="self" />
+    <link href="http://localhost:4000/feed/" rel="self" />
     <link href="http://nwf5d.github.com/" />
-    <lastBuildDate>2014-03-07T21:53:28+08:00</lastBuildDate>
+    <lastBuildDate>2018-04-01T13:50:16+08:00</lastBuildDate>
     <webMaster>nwf@github.com</webMaster>
     
     <item>
+      <title>PRML笔记--第一次课</title>
+      <link href="http://localhost:4000/2014/04/prml-note-lesson1"/>
+      <pubDate>2014-04-26T00:00:00+08:00</pubDate>
+      <author>Richard Nieh</author>
+      <guid>http://localhost:4000/2014/04/prml-note-lesson1</guid>
+      <content:encoded><![CDATA[<p>PRML讨论第一次课，讲的很好，把笔记记录下来。</p>
+
+<h2 id="本书的主要线索">本书的主要线索</h2>
+<blockquote>
+  <ol>
+    <li>模型是不是贝叶斯模型？</li>
+    <li>一个模型是有监督还是无监督？</li>
+    <li>一个模型是离散的还是连续的？</li>
+    <li>一个模型是参数模型还是非参模型？</li>
+  </ol>
+</blockquote>
+
+<h2 id="参数方法与非参方法">参数方法与非参方法</h2>
+
+<h3 id="区别">区别</h3>
+
+<ol>
+  <li>参数方法：参数个数固定，以一种全局的方式去拟合一条曲线，注重整体性</li>
+  <li>非参方法：参数不固定，随样本增加而增加(如KNN)；是以一种局部的方式去预测附近新
+数据点的位置</li>
+</ol>
+
+<h3 id="使用场景">使用场景</h3>
+
+<ol>
+  <li>低维时，使用非参比较好。相信数据比较平滑，预测附近值</li>
+  <li>高维时，使用参数方法，从整理拟合曲线。数据高维时，数据量比较少的时候，把空间
+想象成一个球体，那么在球体外壳质量占比更大，因而数据趋向于分布在壳上。数据高
+  维时，如果要用非参方法，应该先做特征选择进行降维，相当于L0正则</li>
+</ol>
+
+<h2 id="机器学习的基础">机器学习的基础</h2>
+
+<p>概率论、信息论、线性代数</p>
+
+<p>两种角度：离散数据时用概率分布；连续数据用概率密度</p>
+
+<p>Bayes公式：
+\begin{equation} p(x|y)=p(y|x)p(x)/p(y) \end{equation}
+按Bayes理解，$p(x|y)是后验，$$p(y|x)$是似然，$p(x)$看成先验，$p(y)$看成是归一项或模型证据
+即：$后验=似然×先验/归一项$</p>
+
+<p>概率的两个性质：</p>
+
+<ol>
+  <li>加法法则：$p(y)=\sum _x p(x,y)$</li>
+  <li>乘法法则：$p(x,y)=p(x|y)p(y)$</li>
+</ol>
+
+<h2 id="频率学派与贝叶斯学派">频率学派与贝叶斯学派</h2>
+
+<p>频率学派：数据是变化的，参数是固定的
+贝叶斯学派：数据是固定的，参数是随机变量；通过求概率来求解</p>
+
+<p>极大似然估计(点估计)：\begin{equation} arg_\theta p(D|\theta) \end{equation}
+天然会产生过拟合，一般是加正则的方式，即加先验$p(\theta)$,
+得到贝叶斯极大似然估计：\begin{equation}p(\theta|D) \propto arg_\theta p(D|\theta)p(\theta) \end{equation}
+贝叶斯估计：先求$p(\theta|D)$，再求解\begin{equation} p(t) = \int p(t|\theta)p(\theta|D)d\theta \end{equation}
+相当于在数据D上求期望</p>
+
+<h2 id="机器学习的一般过程">机器学习的一般过程</h2>
+
+<p>数据集一般可分为训练集(train)、验证集(valid)和测试集(test)，如下图所示。机器学习的过程一般如下：</p>
+
+<blockquote>
+  <ol>
+    <li>模型选择：选超参$\lambda$，确定模型的复杂度。用训练集进行训练，再用验证集验证结果来对模型进行选择</li>
+    <li>模型评估：将训练好的模型在测试集上进行最终的效果评估</li>
+  </ol>
+</blockquote>
+
+<p><img src="../../../images/dataset.jpeg" alt="数据集" />
+当数据集较少时，为充分利用数据，一般会在模型通过评估后，会将确定好的模型在所有的数据集(train+valid+test)
+进行训练，得到最终的参数(如逻辑回归中的权重参数)</p>
+
+<p><strong>过拟合</strong>：训练集上表现好，测试集上表现差
+因而，希望模型尽量简单，函数变化缓慢，而不是剧烈变化</p>
+
+<h2 id="几种分布">几种分布</h2>
+
+<ol>
+  <li>
+    <p>高斯分布
+\begin{equation}N(x|\mu,{\delta}^2)=\frac{1}{Z}e^{-\frac{(x-\mu)^2}{2\delta^2}}\end{equation}
+期望$\mu$：\begin{equation}\mu=\int xp(x)dx\end{equation}
+方差${\delta}^2$：\begin{equation} {\delta}^2=\int (x-\mu)^2p(x)dx\end{equation}</p>
+  </li>
+  <li>
+    <p>T分布
+\begin{equation}T(x)=\int_{0}^{\infty}t^{x-1}e^{-t}dt\end{equation}</p>
+  </li>
+  <li>
+    <p>多维高斯
+\begin{equation}N(x|\mu,\Sigma)=\frac{1}{Z}e^{-(x-\mu)^T\Sigma^{-1}(x-\mu)}\end{equation}</p>
+  </li>
+</ol>
+
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>从有效沟通说起</title>
-      <link href="http://nwf5d.net/2014/03/effective-communication"/>
+      <link href="http://localhost:4000/2014/03/effective-communication"/>
       <pubDate>2014-03-01T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2014/03/effective-communication</guid>
+      <guid>http://localhost:4000/2014/03/effective-communication</guid>
       <content:encoded><![CDATA[<p>今天参加公司组织的培训，讲到有效沟通，说到几乎每个人在沟通的时候都会被一些因素影响到效果。如：情绪、价值观等。对于情绪需要先处理好再沟通，价值观则几乎无法改变，因此对于价值观不同的人一般很难沟通。</p>
 
 <p>沟通最重要的就是倾听，我们总是急于做判断、急于下结论。最好的一个例子就是小女孩的故事：有个节目，主持问小孩一个问题，如果你在飞机上，发现飞机没油了，会怎么办？小孩回答说：我会让所有人系好安全带，然后我跳降落伞。现场哄堂大笑，而小女孩很委屈地哭了。主持人问她为什么哭？她说我跳伞是想找其他飞机来给加油。现场一片寂静。</p>
@@ -28,10 +134,10 @@
     
     <item>
       <title>推荐算法分类</title>
-      <link href="http://nwf5d.net/2014/02/recsys-category"/>
+      <link href="http://localhost:4000/2014/02/recsys-category"/>
       <pubDate>2014-02-19T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2014/02/recsys-category</guid>
+      <guid>http://localhost:4000/2014/02/recsys-category</guid>
       <content:encoded><![CDATA[<h2 id="item-based-collective-filtering">Item based collective filtering</h2>
 
 <p>总结：物以类聚</p>
@@ -105,7 +211,7 @@
 
 <p>缺点:是付出的空间代价太大</p>
 
-<h2 id="section">聚类算法</h2>
+<h2 id="聚类算法">聚类算法</h2>
 
 <p>总结：降低维度以及为并行计算作准备</p>
 
@@ -114,7 +220,7 @@
 <p>在基于内容的算法中，因为很多资讯之间并不是那么的相关，把他们都相互计算相似度，会得到很多的0，所以没有必要。因此可以在计算之前，对整个item做个聚类，然后分别对各簇来做相似度计算。
 最简单的就是k-means。</p>
 
-<h2 id="section-1">组合算法</h2>
+<h2 id="组合算法">组合算法</h2>
 
 <p>总结：博采众长</p>
 
@@ -127,7 +233,7 @@
   <li>对新用户做基于内容的推荐，因为新用户没有任何评分数据，对老用户用cf来做。</li>
 </ul>
 
-<h2 id="section-2">参考资料</h2>
+<h2 id="参考资料">参考资料</h2>
 
 <p>[1]. <a href="http://eric-gcm.iteye.com/blog/1940273">推荐引擎的几种算法总结（转）</a></p>
 
@@ -140,13 +246,13 @@
     
     <item>
       <title>信息论</title>
-      <link href="http://nwf5d.net/2014/02/information-theory"/>
+      <link href="http://localhost:4000/2014/02/information-theory"/>
       <pubDate>2014-02-16T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2014/02/information-theory</guid>
+      <guid>http://localhost:4000/2014/02/information-theory</guid>
       <content:encoded><![CDATA[<p>信息论（Information Theory）是概率论与数理统计的一个分枝。用于信息处理、信息熵、通信系统、数据传输、率失真理论、密码学、信噪比、数据压缩和相关课题。</p>
 
-<h2 id="section">基本概念</h2>
+<h2 id="基本概念">基本概念</h2>
 <p>先说明一点：在信息论里面对数log默认都是指以2为底数。</p>
 
 <ul>
@@ -205,7 +311,7 @@ H(X) - H(X|Y) = H(Y) - H(Y|X)
 \label{eq:chained_rule2} 
 \end{equation}</p>
 
-<h2 id="information-gain">信息增益Information Gain</h2>
+<h2 id="信息增益information-gain">信息增益Information Gain</h2>
 <p>系统原先的熵是H(X)，在条件Y已知的情况下系统的熵（条件熵）为H(X|Y)，信息增益就是这两个熵的差值。
 \begin{equation} 
 IG = H(X) - H(X|Y) = H(Y) - H(Y|X)
@@ -213,7 +319,7 @@ IG = H(X) - H(X|Y) = H(Y) - H(Y|X)
 \end{equation}
 熵表示系统的不确定度，所以信息增益越大表示条件Y对于确定系统的贡献越大。</p>
 
-<h3 id="section-1">信息增益在特征选择中的应用</h3>
+<h3 id="信息增益在特征选择中的应用">信息增益在特征选择中的应用</h3>
 <p>由（9）式可以直接推出词条w的信息增益，（9）式中的X代表类别的集合，Y代表w存在和不存在两种情况:</p>
 
 <p>\begin{equation} 
@@ -226,7 +332,7 @@ $p(w)$是在整个训练集中包含w的文档占全部文档的比例;
 $p(c_i|w)$ 表示出现w的文档集合中属于类别i的文档所占的比例;
 $p(c_i|\overline{w})$ 表示没有出现w的文档集合中属于类别i的文档所占的比例。</p>
 
-<h3 id="section-2">信息增益在决策树中的应用</h3>
+<h3 id="信息增益在决策树中的应用">信息增益在决策树中的应用</h3>
 
 <table>
   <thead>
@@ -340,7 +446,7 @@ $p(c_i|\overline{w})$ 表示没有出现w的文档集合中属于类别i的文�
   </tbody>
 </table>
 
-<p>（7）式中的X表示打球和不打球两种情况。 </p>
+<p>（7）式中的X表示打球和不打球两种情况。</p>
 
 <p>只看最后一列我们得到打球的概率是9/14，不打球的概率是5/14。因此在没有任何先验信息的情况下，系统的熵（不确定性）为
 $H(X)=-\frac{9}{14}log\frac{9}{14}-\frac{5}{14}log\frac{5}{14}=0.94$</p>
@@ -439,7 +545,7 @@ $H(X|Y)=-\frac{5}{14}[\frac{5}{14}log\frac{9}{14}+\frac{9}{14}log\frac{9}{14}]$
 
 <p>同样方法计算当选择temperature、humidity、windy作为根节点时系统的信息增益，选择IG值最大的作为最终的根节点。</p>
 
-<h2 id="mutual-information">互信息Mutual Information</h2>
+<h2 id="互信息mutual-information">互信息Mutual Information</h2>
 <p>$y_j$对$x_i$的互信息定义为后验概率与先验概率比值的对数。</p>
 
 <p>\begin{equation} 
@@ -456,7 +562,7 @@ I(X:Y) = \sum_i \sum_j p(x_i,y_j)I(x_i;y_j) = \sum_i \sum_jp(x_i,y_j)log \frac{p
 
 <p><em>可见平均互信息就是信息增益！</em></p>
 
-<h3 id="section-3">互信息在特征选择中的应用</h3>
+<h3 id="互信息在特征选择中的应用">互信息在特征选择中的应用</h3>
 <p>词条w与类别$c_i$的互信息为
 \begin{equation} 
 MI(w,c_i) = log \frac{p(w|c_i)}{p(w}
@@ -474,7 +580,7 @@ MI_{avg}(w,c_i) = \sum_ip(c_i)log \frac{p(w|c_i)}{p(w}
 \end{equation}
 最后选互信息最大的前K个词条作为特征项。</p>
 
-<h2 id="cross-entropy">交叉熵Cross Entropy</h2>
+<h2 id="交叉熵cross-entropy">交叉熵Cross Entropy</h2>
 <p>交叉熵是一种万能的Monte-Carlo技术，常用于稀有事件的仿真建模、多峰函数的最优化问题。交叉熵技术已用于解决经典的旅行商问题、背包问题、最短路问题、最大割问题等。这里给一个文章链接：<a href="http://eprints.eemcs.utwente.nl/7716/01/fulltext.pdf">A Tutorial on the Cross-Entropy Method</a></p>
 
 <p>交叉熵算法的推导过程中又牵扯出来一个问题：如何求一个数学期望？常用的方法有这么几种：</p>
@@ -496,7 +602,7 @@ D(g,h) = E_g log \frac{g(X)}{h(X)} = \frac{1}{N}\sum_{i=1}g(x_i)log\frac{g(x_i)}
 
 <p>通常选取g和h具有相同的概率分布类型（比如已知h是指数分布，那么就选g也是指数分布）—-参数估计，只是pdf参数不一样（实际上h中的参数根本就是未知的）。</p>
 
-<h3 id="section-4">基于期望交叉熵的特征项选择</h3>
+<h3 id="基于期望交叉熵的特征项选择">基于期望交叉熵的特征项选择</h3>
 
 <p>\begin{equation} 
 CE(w) = \sum_ip(c_i|w)log\frac{p(c_i|w)}{p(c_i)}
@@ -517,10 +623,10 @@ $w$时文档属于
     
     <item>
       <title>做有价值的事</title>
-      <link href="http://nwf5d.net/2012/11/do-a-good-job"/>
+      <link href="http://localhost:4000/2012/11/do-a-good-job"/>
       <pubDate>2012-11-27T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2012/11/do-a-good-job</guid>
+      <guid>http://localhost:4000/2012/11/do-a-good-job</guid>
       <content:encoded><![CDATA[<p>先从两件事情说起。第一件事情是一年前研究三种日志采集的开源实现，chukwa、Scribe和Flume,总的时间有超过两个月，最后以失败告终。当时总结的原因是：</p>
 
 <ol>
@@ -547,17 +653,17 @@ $w$时文档属于
     
     <item>
       <title>github上搭建自己的博客</title>
-      <link href="http://nwf5d.net/2012/11/create-blog-with-git"/>
+      <link href="http://localhost:4000/2012/11/create-blog-with-git"/>
       <pubDate>2012-11-16T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2012/11/create-blog-with-git</guid>
+      <guid>http://localhost:4000/2012/11/create-blog-with-git</guid>
       <content:encoded><![CDATA[<p>github.com的jekyll是个简单的用于生成静态站点的工具。</p>
 
 <p>所有的文章会生成静态的html文件，关键是这东西可以放在github上，可以绑定自己的域名, 
 有稳定的服务器给你。支持rss,评论，代码高亮。符合程序员的口味。</p>
 
 <hr />
-<p># 搭建过程</p>
+<h1 id="搭建过程">搭建过程</h1>
 
 <h1 id="links">links</h1>
 
@@ -565,9 +671,9 @@ $w$时文档属于
   <li>官方的pages教程 <a href="pages.github.com">pages</a></li>
   <li>jekyll项目主页<a href="https://github.com/mojombo/jekyll">jekyll</a></li>
   <li>一些托管在github的站点<a href="https://github.com/mojombo/jekyll/wiki/sites">site</a></li>
-  <li>模版语言<a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a> </li>
+  <li>模版语言<a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a></li>
   <li><a href="none">Textile</a>一种标记语言</li>
-  <li><a href="none">markdown</a>另一种简单的标记语言 </li>
+  <li><a href="none">markdown</a>另一种简单的标记语言</li>
   <li><a href="pygments.org/docs/lexers/">pygment</a></li>
   <li><a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML Front Matter</a></li>
   <li>YAML Front Matter</li>
@@ -578,17 +684,17 @@ $w$时文档属于
     
     <item>
       <title>定时清除Zookeeper日志【转】</title>
-      <link href="http://nwf5d.net/2012/10/clear-zookeeper-log"/>
+      <link href="http://localhost:4000/2012/10/clear-zookeeper-log"/>
       <pubDate>2012-10-10T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2012/10/clear-zookeeper-log</guid>
-      <content:encoded><![CDATA[<h1 id="section">命令格式：</h1>
+      <guid>http://localhost:4000/2012/10/clear-zookeeper-log</guid>
+      <content:encoded><![CDATA[<h1 id="命令格式">命令格式：</h1>
 
-<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <datadir> <snapdir> -n <count> </count></snapdir></datadir></p>
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count></count></snapDir></dataDir></p>
 
 <p>举例：</p>
 
-<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10 </p>
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10</p>
 
 <p>定时清除zookeeper日志和快照数据非常简单，只需简单3步。</p>
 
@@ -598,10 +704,10 @@ $w$时文档属于
     
     <item>
       <title>clojure基础</title>
-      <link href="http://nwf5d.net/2012/06/exploring-clojure"/>
+      <link href="http://localhost:4000/2012/06/exploring-clojure"/>
       <pubDate>2012-06-27T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2012/06/exploring-clojure</guid>
+      <guid>http://localhost:4000/2012/06/exploring-clojure</guid>
       <content:encoded><![CDATA[<p>Clojure基础：</p>
 
 <ol>
@@ -614,8 +720,8 @@ $w$时文档属于
 </ol>
 
 <h1 id="a">a</h1>
-<p># b
-# c</p>
+<h1 id="b">b</h1>
+<h1 id="c">c</h1>
 
 <ul>
   <li>a</li>
@@ -707,7 +813,7 @@ $w$时文档属于
   </tbody>
 </table>
 
-<p>Clojue code is composed of Clojure data. </p>
+<p>Clojue code is composed of Clojure data.</p>
 <table>
     <tr>
         <td>Form		Examples			Primary Coverage </td>
@@ -739,10 +845,10 @@ $w$时文档属于
     
     <item>
       <title>终于折腾好github+Jekyll的博客了</title>
-      <link href="http://nwf5d.net/2012/06/hello-everybody"/>
+      <link href="http://localhost:4000/2012/06/hello-everybody"/>
       <pubDate>2012-06-24T00:00:00+08:00</pubDate>
       <author>Richard Nieh</author>
-      <guid>http://nwf5d.net/2012/06/hello-everybody</guid>
+      <guid>http://localhost:4000/2012/06/hello-everybody</guid>
       <content:encoded><![CDATA[<p>其实，一直有想买个域名和服务自己建个博客，收集整理涉及到的知识和经验。几个星期前在<a href="http://coolshell.cn">酷壳</a>上看到一个很长资源列表，有个dokuwiki的，Google和百度都说不错，(估计那帮人都不知道有jekyll+github这回事)。折腾一段时间后，居然找到<a href="http://yihui.name">谢益辉</a>的博客，还有篇介绍Jekyll的，以及从wordpress搬到Github的经历，突然眼前一亮，终于找到组织了。大牛就是大牛，模板啥的也选的很眼光，于是我忍不住无耻地搬了过来。总算安家了，以后坚持写博客了，坚定不移地向大牛迈进！</p>
 ]]></content:encoded>
     </item>

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Richard Nieh" />
-    <title>clojure基础</title>
+    <title>定时清除Zookeeper日志【转】</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href="/feed/" rel="alternate" title="Richard Nieh" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/css/table.css" />
@@ -64,18 +64,18 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>clojure基础</h1>
+        <h1>定时清除Zookeeper日志【转】</h1>
         </header>
         <nav id="real_nav">
-        <span><a title="home page" class="" href="http://nwf5d.net/">home</a></span>
-        <span><a title="about" class="" href="http://nwf5d.net/about/">about</a></span>
-        <span><a title="publication" class="" href="http://nwf5d.net/publication/">publication</a></span>
-        <span><a title="guestbook" class="" href="http://nwf5d.net/guestbook/">guestbook</a></span>
-        <span><a title="vitae" class="" href="http://nwf5d.net/vitae/">vitae</a></span>
-        <span><a title="categories" class="" href="http://nwf5d.net/categories/">categories</a></span>
-        <span><a title="tags" class="" href="http://nwf5d.net/tags/">tags</a></span>
-        <span><a title="links" class="" href="http://nwf5d.net/links/">links</a></span>
-        <span><a title="subscribe by RSS" class="" href="http://nwf5d.net/feed/">subscribe</a></span>
+        <span><a title="home page" class="" href="http://localhost:4000/">home</a></span>
+        <span><a title="about" class="" href="http://localhost:4000/about/">about</a></span>
+        <span><a title="publication" class="" href="http://localhost:4000/publication/">publication</a></span>
+        <span><a title="guestbook" class="" href="http://localhost:4000/guestbook/">guestbook</a></span>
+        <span><a title="vitae" class="" href="http://localhost:4000/vitae/">vitae</a></span>
+        <span><a title="categories" class="" href="http://localhost:4000/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://localhost:4000/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://localhost:4000/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://localhost:4000/feed/">subscribe</a></span>
 
         <!--
         <span><a title="home" class="" href="/">home</a></span>
@@ -94,7 +94,7 @@
         <article class="content">
         <section class="meta">
 <span class="time">
-  <time datetime="2012-06-27">2012-06-27</time>
+  <time datetime="2012-10-10">2012-10-10</time>
 </span>
 
  | 
@@ -110,156 +110,31 @@
 <span class="tags">
   tags
   
-  <a href="/tags/#clojure" title="clojure">clojure</a>&nbsp;
-  
-  <a href="/tags/#lisp" title="lisp">lisp</a>&nbsp;
-  
-  <a href="/tags/#language" title="language">language</a>&nbsp;
+  <a href="/tags/#zookeeper" title="zookeeper">zookeeper</a>&nbsp;
   
 </span>
 
 </section>
 <section class="post">
-<p>Clojure基础：</p>
+<h1 id="命令格式">命令格式：</h1>
 
-<ol>
-  <li>Forms</li>
-  <li>Reader macros</li>
-  <li>Functions</li>
-  <li>Buildings and namespaces</li>
-  <li>Flow control</li>
-  <li>Metadata</li>
-</ol>
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count></count></snapDir></dataDir></p>
 
-<h1 id="a">a</h1>
-<p># b
-# c</p>
+<p>举例：</p>
 
-<ul>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-</ul>
+<p>java -cp zookeeper.jar:log4j.jar:conf org.apache.zookeeper.server.PurgeTxnLog /log/xres/zookeeper/zk_trlog /www/xres/app/zk_data -n 10</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Left align</th>
-      <th style="text-align: right">Right align</th>
-      <th style="text-align: center">Center align</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">This</td>
-      <td style="text-align: right">This</td>
-      <td style="text-align: center">This</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">column</td>
-      <td style="text-align: right">column</td>
-      <td style="text-align: center">column</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">will</td>
-      <td style="text-align: right">will</td>
-      <td style="text-align: center">will</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">be</td>
-      <td style="text-align: right">be</td>
-      <td style="text-align: center">be</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">left</td>
-      <td style="text-align: right">right</td>
-      <td style="text-align: center">center</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">aligned</td>
-      <td style="text-align: right">aligned</td>
-      <td style="text-align: center">aligned</td>
-    </tr>
-  </tbody>
-</table>
+<p>定时清除zookeeper日志和快照数据非常简单，只需简单3步。</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Left align</th>
-      <th style="text-align: right">Right align</th>
-      <th style="text-align: center">Center align</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">This</td>
-      <td style="text-align: right">This</td>
-      <td style="text-align: center">This</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">column</td>
-      <td style="text-align: right">column</td>
-      <td style="text-align: center">column</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">will</td>
-      <td style="text-align: right">will</td>
-      <td style="text-align: center">will</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">be</td>
-      <td style="text-align: right">be</td>
-      <td style="text-align: center">be</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">left</td>
-      <td style="text-align: right">right</td>
-      <td style="text-align: center">center</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">aligned</td>
-      <td style="text-align: right">aligned</td>
-      <td style="text-align: center">aligned</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Clojue code is composed of Clojure data. </p>
-<table>
-    <tr>
-        <td>Form		Examples			Primary Coverage </td>
-    </tr>
-</table>
-<p>|Form Examples|Primary Coverage
-|:—-|—:
-|Boolean|true,false
-|Character |\a 
-|Keyword |:tag,:doc
-|List |(1,2,3_),(println “foo”)
-|Map |{:name “Bill”, :age 42}
-|Nil |nil
-|Number |1,4.2
-|Set |#{:snap:crackle:pop}
-|String |”hello”
-|Symbol |user/foo,java.lang.String
-|Vector  |[1 2 3]</p>
-
-<h1 id="mapskeywords-and-structs">Maps,Keywords and Structs</h1>
-<p>(def inventors {“Lisp” “McCarthy” “Clojure” “Hickey”})
-(def inventors {“Lisp” “McCarthy”, “Clojure” “Hickey”})</p>
-
-<p>(inventors “Lisp”)  =&gt;  “MacCarthy”
-(inventors “Foo”) =&gt; nil</p>
-
+<p>Step1：在zookeeper/bin目录建立purgeTxnLog.sh文件，内容如下所示：</p>
 
 </section>
 <section align="right">
 <br/>
 <span>
-	<a  href="/2012/06/hello-everybody" class="pageNav"  >上一篇</a>
+	<a  href="/2012/06/exploring-clojure" class="pageNav"  >上一篇</a>
 	&nbsp;&nbsp;&nbsp;
-	<a  href="/2012/10/clear-zookeeper-log" class="pageNav"  >下一篇</a>
+	<a  href="/2012/11/create-blog-with-git" class="pageNav"  >下一篇</a>
 </span>
 </section>
 <!-- JiaThis Button BEGIN -->
@@ -299,12 +174,12 @@ $(function(){
     var url = false;
         if (e.which == 37 || e.which == 74) {  // Left arrow and J
             
-        url = 'http://nwf5d.net/2012/06/hello-everybody';
+        url = 'http://localhost:4000/2012/06/exploring-clojure';
         
         }
         else if (e.which == 39 || e.which == 75) {  // Right arrow and K
             
-        url = 'http://nwf5d.net/2012/10/clear-zookeeper-log';
+        url = 'http://localhost:4000/2012/11/create-blog-with-git';
         
         }
         if (url) {
@@ -327,7 +202,7 @@ $(function(){
 
     <footer>
         <p><small>
-            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2014 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
+            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/_posts/2012-10-10-clear-zookeeper-log.md" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2018 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
     </footer>
 
     </div>

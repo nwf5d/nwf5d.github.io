@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Richard Nieh" />
-    <title>Richard Nieh - Publication</title>
+    <title>PRML笔记--第一次课</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href="/feed/" rel="alternate" title="Richard Nieh" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/css/table.css" />
@@ -64,7 +64,7 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>Publication</h1>
+        <h1>PRML笔记--第一次课</h1>
         </header>
         <nav id="real_nav">
         <span><a title="home page" class="" href="http://localhost:4000/">home</a></span>
@@ -92,12 +92,139 @@
         -->
         </nav>
         <article class="content">
-        <section class="post">
-<p>暂无，期待吧。</p>
+        <section class="meta">
+<span class="time">
+  <time datetime="2014-04-26">2014-04-26</time>
+</span>
+
+ | 
+<span class="categories">
+  categories
+  
+  <a href="/categories/#PRML笔记" title="PRML笔记">PRML笔记</a>&nbsp;
+  
+</span>
+
+
+ | 
+<span class="tags">
+  tags
+  
+  <a href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>&nbsp;
+  
+  <a href="/tags/#PRML" title="PRML">PRML</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="post">
+<p>PRML讨论第一次课，讲的很好，把笔记记录下来。</p>
+
+<h2 id="本书的主要线索">本书的主要线索</h2>
+<blockquote>
+  <ol>
+    <li>模型是不是贝叶斯模型？</li>
+    <li>一个模型是有监督还是无监督？</li>
+    <li>一个模型是离散的还是连续的？</li>
+    <li>一个模型是参数模型还是非参模型？</li>
+  </ol>
+</blockquote>
+
+<h2 id="参数方法与非参方法">参数方法与非参方法</h2>
+
+<h3 id="区别">区别</h3>
+
+<ol>
+  <li>参数方法：参数个数固定，以一种全局的方式去拟合一条曲线，注重整体性</li>
+  <li>非参方法：参数不固定，随样本增加而增加(如KNN)；是以一种局部的方式去预测附近新
+数据点的位置</li>
+</ol>
+
+<h3 id="使用场景">使用场景</h3>
+
+<ol>
+  <li>低维时，使用非参比较好。相信数据比较平滑，预测附近值</li>
+  <li>高维时，使用参数方法，从整理拟合曲线。数据高维时，数据量比较少的时候，把空间
+想象成一个球体，那么在球体外壳质量占比更大，因而数据趋向于分布在壳上。数据高
+  维时，如果要用非参方法，应该先做特征选择进行降维，相当于L0正则</li>
+</ol>
+
+<h2 id="机器学习的基础">机器学习的基础</h2>
+
+<p>概率论、信息论、线性代数</p>
+
+<p>两种角度：离散数据时用概率分布；连续数据用概率密度</p>
+
+<p>Bayes公式：
+\begin{equation} p(x|y)=p(y|x)p(x)/p(y) \end{equation}
+按Bayes理解，$p(x|y)是后验，$$p(y|x)$是似然，$p(x)$看成先验，$p(y)$看成是归一项或模型证据
+即：$后验=似然×先验/归一项$</p>
+
+<p>概率的两个性质：</p>
+
+<ol>
+  <li>加法法则：$p(y)=\sum _x p(x,y)$</li>
+  <li>乘法法则：$p(x,y)=p(x|y)p(y)$</li>
+</ol>
+
+<h2 id="频率学派与贝叶斯学派">频率学派与贝叶斯学派</h2>
+
+<p>频率学派：数据是变化的，参数是固定的
+贝叶斯学派：数据是固定的，参数是随机变量；通过求概率来求解</p>
+
+<p>极大似然估计(点估计)：\begin{equation} arg_\theta p(D|\theta) \end{equation}
+天然会产生过拟合，一般是加正则的方式，即加先验$p(\theta)$,
+得到贝叶斯极大似然估计：\begin{equation}p(\theta|D) \propto arg_\theta p(D|\theta)p(\theta) \end{equation}
+贝叶斯估计：先求$p(\theta|D)$，再求解\begin{equation} p(t) = \int p(t|\theta)p(\theta|D)d\theta \end{equation}
+相当于在数据D上求期望</p>
+
+<h2 id="机器学习的一般过程">机器学习的一般过程</h2>
+
+<p>数据集一般可分为训练集(train)、验证集(valid)和测试集(test)，如下图所示。机器学习的过程一般如下：</p>
+
+<blockquote>
+  <ol>
+    <li>模型选择：选超参$\lambda$，确定模型的复杂度。用训练集进行训练，再用验证集验证结果来对模型进行选择</li>
+    <li>模型评估：将训练好的模型在测试集上进行最终的效果评估</li>
+  </ol>
+</blockquote>
+
+<p><img src="../../../images/dataset.jpeg" alt="数据集" />
+当数据集较少时，为充分利用数据，一般会在模型通过评估后，会将确定好的模型在所有的数据集(train+valid+test)
+进行训练，得到最终的参数(如逻辑回归中的权重参数)</p>
+
+<p><strong>过拟合</strong>：训练集上表现好，测试集上表现差
+因而，希望模型尽量简单，函数变化缓慢，而不是剧烈变化</p>
+
+<h2 id="几种分布">几种分布</h2>
+
+<ol>
+  <li>
+    <p>高斯分布
+\begin{equation}N(x|\mu,{\delta}^2)=\frac{1}{Z}e^{-\frac{(x-\mu)^2}{2\delta^2}}\end{equation}
+期望$\mu$：\begin{equation}\mu=\int xp(x)dx\end{equation}
+方差${\delta}^2$：\begin{equation} {\delta}^2=\int (x-\mu)^2p(x)dx\end{equation}</p>
+  </li>
+  <li>
+    <p>T分布
+\begin{equation}T(x)=\int_{0}^{\infty}t^{x-1}e^{-t}dt\end{equation}</p>
+  </li>
+  <li>
+    <p>多维高斯
+\begin{equation}N(x|\mu,\Sigma)=\frac{1}{Z}e^{-(x-\mu)^T\Sigma^{-1}(x-\mu)}\end{equation}</p>
+  </li>
+</ol>
 
 
 </section>
-
+<section align="right">
+<br/>
+<span>
+	<a  href="/2014/03/effective-communication" class="pageNav"  >上一篇</a>
+	&nbsp;&nbsp;&nbsp;
+	<a   class="pageNavInvalid"  >下一篇</a>
+</span>
+</section>
 <!-- JiaThis Button BEGIN -->
 <div class="jiathis_style_32x32">
 <a class="jiathis_button_qzone"></a>
@@ -129,7 +256,24 @@
 
 
 
-
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://localhost:4000/2014/03/effective-communication';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
 
         </article>
         <a style="position:fixed;bottom:5px;right:5px;" href="#" title="Back to Top">
@@ -144,7 +288,7 @@
 
     <footer>
         <p><small>
-            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/publication/index.md" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2018 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
+            <a href="http://github.com/nwf5d/nwf5d.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/nwf5d/nwf5d.github.io/edit/master/_posts/2014-04-26-prml-note-lesson1.md" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/nwf5d/nwf5d.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - 2018 by <a href="/about/">Richard Nieh</a> | <span class="label label-info" id="timeSpan"></span></small></p>
     </footer>
 
     </div>
